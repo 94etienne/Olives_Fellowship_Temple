@@ -6,439 +6,377 @@
   <title>Olives Fellowship Temple</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet"/>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
     :root {
       --gold: #C9A84C;
       --gold-light: #E8C96A;
-      --deep: #1A1A2E;
-      --navy: #16213E;
-      --navy2: #0F3460;
-      --cream: #F8F3EA;
-      --dark-brown: #2C1810;
-      --soft-white: #FAFAF7;
-      --text-muted-custom: #6B5E4E;
-      --chat-bg: #F0EBE3;
+      --gold-pale: rgba(201,168,76,0.12);
+      --deep: #111827;
+      --navy: #1E2A3A;
+      --navy2: #0F1F35;
+      --cream: #FAF7F2;
+      --soft-white: #FDFCFA;
+      --text-body: #3D3530;
+      --text-muted: #7C6D62;
+      --chat-bg: #F3EDE6;
+      --border: rgba(201,168,76,0.18);
+      --radius: 14px;
+      --shadow-sm: 0 2px 12px rgba(0,0,0,0.06);
+      --shadow-md: 0 8px 32px rgba(0,0,0,0.10);
+      --shadow-lg: 0 20px 60px rgba(0,0,0,0.15);
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Lato', sans-serif; background: var(--soft-white); color: var(--dark-brown); overflow-x: hidden; }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--soft-white); color: var(--text-body); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
+
+    /* ── UTILITY ── */
+    .font-display { font-family: 'Cormorant Garamond', serif; }
+    .text-gold { color: var(--gold); }
+    .bg-deep { background: var(--deep); }
 
     /* ── NAVBAR ── */
     .navbar {
-      background: rgba(26,26,46,0.97) !important;
-      padding: .70rem 0;
-      transition: all .3s ease;
-      border-bottom: none;
+      background: rgba(17,24,39,0.97) !important;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid rgba(201,168,76,0.1);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: all 0.3s ease;
     }
-    .navbar.scrolled { padding: .35rem 0; box-shadow: 0 4px 30px rgba(0,0,0,.4); }
+    .navbar.scrolled { padding: 0.4rem 0; box-shadow: 0 4px 30px rgba(0,0,0,0.35); }
     .navbar-brand {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Cormorant Garamond', serif;
       color: var(--gold) !important;
-      letter-spacing: .04em;
-      line-height: 1.15;
-      display: flex;
-      align-items: center;
-      gap: .45rem;
+      display: flex; align-items: center; gap: 0.5rem;
+      text-decoration: none;
     }
-    .navbar-brand .brand-cross {
-      font-size: 1.5rem;
-      color: var(--gold);
-      flex-shrink: 0;
-    }
-    .navbar-brand .brand-text {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .navbar-brand .brand-top {
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--gold);
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      line-height: 1;
-      white-space: nowrap;
-    }
-    .navbar-brand .brand-bottom {
-      font-size: .65rem;
-      font-weight: 400;
-      color: rgba(255,255,255,.75);
-      letter-spacing: .35em;
-      text-transform: uppercase;
-      line-height: 1;
-      margin-top: 4px;
-      text-align: center;
-      width: 100%;
-    }
-    .nav-link {
-      color: rgba(255,255,255,.85) !important;
-      font-weight: 400;
-      letter-spacing: .03em;
-      font-size: .75rem;
-      text-transform: uppercase;
-      margin: 0;
-      padding: 5px 7px !important;
-      border-radius: 4px;
-      transition: all .2s;
-    }
-    .nav-link:hover, .nav-link.active { color: var(--gold) !important; background: rgba(201,168,76,.1); }
-    .nav-cta {
-      background: var(--gold) !important;
-      color: var(--deep) !important;
-      border-radius: 20px !important;
-      padding: 5px 12px !important;
-      font-weight: 700;
-    }
+    .brand-cross { font-size: 1.6rem; color: var(--gold); line-height: 1; }
+    .brand-text { display: flex; flex-direction: column; }
+    .brand-top { font-size: 1.05rem; font-weight: 700; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.1; }
+    .brand-sub { font-size: 0.6rem; color: rgba(255,255,255,0.5); letter-spacing: 0.3em; text-transform: uppercase; margin-top: 2px; }
+    .nav-link { color: rgba(255,255,255,0.78) !important; font-size: 0.72rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; padding: 6px 10px !important; border-radius: 6px; transition: all 0.2s; }
+    .nav-link:hover, .nav-link.active { color: var(--gold) !important; background: var(--gold-pale); }
+    .nav-cta { background: var(--gold) !important; color: var(--deep) !important; border-radius: 20px !important; padding: 6px 14px !important; font-weight: 700; }
     .nav-cta:hover { background: var(--gold-light) !important; }
-    .navbar-toggler { border-color: var(--gold); }
-    .navbar-toggler-icon { filter: invert(1); }
+    .navbar-toggler { border: 1px solid rgba(201,168,76,0.4); padding: 4px 8px; }
+    .navbar-toggler-icon { filter: invert(1) sepia(1) saturate(2) hue-rotate(5deg); background-size: 18px; }
 
     /* ── TICKER ── */
-    .ticker-wrap { background: var(--gold); padding: 9px 0; overflow: hidden; }
-    .ticker { display: flex; animation: tickerScroll 35s linear infinite; white-space: nowrap; }
-    .ticker span { padding: 0 40px; font-weight: 700; font-size: .82rem; color: var(--deep); letter-spacing: .5px; }
+    .ticker-wrap { background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold)); padding: 8px 0; overflow: hidden; }
+    .ticker { display: flex; animation: tickerScroll 40s linear infinite; white-space: nowrap; width: max-content; }
+    .ticker span { padding: 0 36px; font-weight: 600; font-size: 0.78rem; color: var(--deep); letter-spacing: 0.04em; }
     .ticker span i { margin-right: 7px; }
-    @keyframes tickerScroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+    @keyframes tickerScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
     /* ── HERO ── */
     .hero {
-      min-height: 100vh;
-      background: linear-gradient(135deg, rgba(26,26,46,.9) 0%, rgba(44,24,16,.85) 100%),
-                  url('https://images.unsplash.com/photo-1519491050282-cf00c82424b1?w=1800&q=80') center/cover no-repeat fixed;
-      display: flex;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
+      min-height: 100svh;
+      background: linear-gradient(155deg, rgba(17,24,39,0.92) 0%, rgba(15,31,53,0.88) 50%, rgba(44,24,16,0.82) 100%),
+                  url('https://images.unsplash.com/photo-1519491050282-cf00c82424b1?w=1800&q=85') center/cover no-repeat fixed;
+      display: flex; align-items: center;
+      position: relative; overflow: hidden;
     }
-    .hero::after {
-      content:'';
-      position:absolute;
-      bottom:0;left:0;right:0;height:120px;
-      background:linear-gradient(to top,var(--soft-white),transparent);
+    .hero::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 140px; background: linear-gradient(to top, var(--soft-white), transparent); pointer-events: none; }
+    .hero-pattern {
+      position: absolute; inset: 0; opacity: 0.04;
+      background-image: radial-gradient(circle, var(--gold) 1px, transparent 1px);
+      background-size: 40px 40px;
     }
-    .hero-overlay { position:absolute; inset:0; background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23C9A84C' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
-    .hero-badge {
-      display: inline-block;
-      background: rgba(201,168,76,.18);
-      border: 1px solid rgba(201,168,76,.4);
-      color: var(--gold-light);
-      font-size: .72rem;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      padding: .4rem 1.2rem;
-      border-radius: 20px;
-      margin-bottom: 1.5rem;
-    }
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.8rem, 7vw, 5rem);
-      color: #fff;
-      line-height: 1.1;
-      margin-bottom: 1.5rem;
-      font-weight: 900;
-    }
+    .hero-cross-bg { position: absolute; right: 5%; top: 50%; transform: translateY(-50%); font-size: clamp(10rem, 22vw, 22rem); color: rgba(201,168,76,0.06); pointer-events: none; animation: floatCross 7s ease-in-out infinite; font-family: 'Cormorant Garamond', serif; }
+    @keyframes floatCross { 0%,100% { transform: translateY(-50%) rotate(0deg); } 50% { transform: translateY(-53%) rotate(1.5deg); } }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.35); color: var(--gold-light); font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; padding: 0.45rem 1.2rem; border-radius: 30px; margin-bottom: 1.4rem; }
+    .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem, 7vw, 5.5rem); color: #fff; line-height: 1.08; margin-bottom: 1.4rem; font-weight: 700; }
     .hero h1 em { color: var(--gold); font-style: italic; }
-    .hero p {
-      color: rgba(255,255,255,.8);
-      font-size: 1.1rem;
-      font-weight: 300;
-      line-height: 1.8;
-      max-width: 540px;
-      margin-bottom: 2.2rem;
-    }
-    .btn-gold {
-      background: linear-gradient(135deg,var(--gold),var(--gold-light));
-      color: var(--deep);
-      border: none;
-      padding: .85rem 2rem;
-      font-size: .9rem;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      font-weight: 700;
-      border-radius: 30px;
-      transition: all .3s;
-      text-decoration: none;
-      display: inline-block;
-      box-shadow: 0 4px 20px rgba(201,168,76,.35);
-    }
-    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(201,168,76,.5); color: var(--deep); }
-    .btn-outline-gold {
-      border: 2px solid rgba(255,255,255,.35);
-      color: #fff;
-      padding: .85rem 2rem;
-      font-size: .9rem;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      font-weight: 700;
-      border-radius: 30px;
-      transition: all .3s;
-      text-decoration: none;
-      display: inline-block;
-    }
-    .btn-outline-gold:hover { border-color: var(--gold); color: var(--gold); background: rgba(201,168,76,.08); }
-    .hero-cross {
-      position: absolute;
-      right: 10%;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 18rem;
-      color: rgba(201,168,76,.06);
-      pointer-events: none;
-      animation: float 6s ease-in-out infinite;
-    }
-    @keyframes float { 0%,100%{transform:translateY(-50%) rotate(0deg)} 50%{transform:translateY(-53%) rotate(2deg)} }
-    .hero-stats { display:flex; gap:28px; flex-wrap:wrap; margin-top:3rem; }
-    .hstat { text-align:center; }
-    .hstat-num { font-family:'Playfair Display',serif; font-size:2rem; font-weight:900; color:var(--gold); line-height:1; display:block; }
-    .hstat-lbl { font-size:.72rem; color:rgba(255,255,255,.5); letter-spacing:1.5px; text-transform:uppercase; margin-top:4px; display:block; }
+    .hero-desc { color: rgba(255,255,255,0.75); font-size: clamp(0.9rem, 2vw, 1.05rem); font-weight: 300; line-height: 1.85; max-width: 520px; margin-bottom: 2.2rem; }
+    .btn-gold { background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: var(--deep); border: none; padding: 0.78rem 1.8rem; font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; border-radius: 30px; transition: all 0.3s; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 20px rgba(201,168,76,0.35); cursor: pointer; }
+    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(201,168,76,0.5); color: var(--deep); }
+    .btn-outline-ghost { border: 1.5px solid rgba(255,255,255,0.3); color: #fff; padding: 0.78rem 1.8rem; font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; border-radius: 30px; transition: all 0.3s; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+    .btn-outline-ghost:hover { border-color: var(--gold); color: var(--gold); background: rgba(201,168,76,0.08); }
+    .hero-stats { display: flex; gap: 2rem; flex-wrap: wrap; margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); }
+    .hstat-num { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 700; color: var(--gold); line-height: 1; display: block; }
+    .hstat-lbl { font-size: 0.68rem; color: rgba(255,255,255,0.45); letter-spacing: 1.5px; text-transform: uppercase; margin-top: 4px; display: block; }
 
     /* ── INFO STRIP ── */
-    .info-strip { background: var(--deep); padding: 1.2rem 0; }
-    .info-item { display:flex; align-items:center; gap:.7rem; color:rgba(255,255,255,.85); font-size:.88rem; justify-content:center; }
-    .info-item i { color:var(--gold); font-size:1rem; }
+    .info-strip { background: var(--navy); padding: 1rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .info-item { display: flex; align-items: center; gap: 0.6rem; color: rgba(255,255,255,0.8); font-size: 0.82rem; justify-content: center; padding: 4px 0; }
+    .info-item i { color: var(--gold); width: 16px; text-align: center; }
 
-    /* ── SECTION LABELS ── */
-    .section-label { font-size:.72rem; letter-spacing:.25em; text-transform:uppercase; color:var(--gold); font-weight:700; display:block; margin-bottom:.6rem; }
-    .section-title { font-family:'Playfair Display',serif; font-size:clamp(2rem,4vw,3rem); color:var(--dark-brown); line-height:1.2; }
-    .section-title.light { color:#fff; }
-    .divider-gold { width:60px; height:3px; background:linear-gradient(90deg,var(--gold),var(--gold-light)); margin:1rem 0 2rem; border-radius:2px; }
-    .divider-gold.center { margin:1rem auto 2rem; }
+    /* ── SECTION STYLES ── */
+    .section-label { font-size: 0.68rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); font-weight: 700; display: flex; align-items: center; gap: 8px; margin-bottom: 0.7rem; }
+    .section-label::before { content: ''; width: 24px; height: 2px; background: var(--gold); border-radius: 2px; }
+    .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4.5vw, 3.2rem); line-height: 1.15; color: var(--text-body); font-weight: 700; }
+    .section-title.light { color: #fff; }
+    .divider-gold { width: 48px; height: 2px; background: linear-gradient(90deg, var(--gold), var(--gold-light)); margin: 1.2rem 0 2rem; border-radius: 2px; }
+    .divider-gold.center { margin: 1.2rem auto 2rem; }
 
     /* ── ABOUT ── */
-    .about-section { padding:100px 0; background:var(--soft-white); }
-    .about-img-wrap { position:relative; }
-    .about-img-wrap img { width:100%; border-radius:12px; box-shadow:0 20px 60px rgba(0,0,0,.15); }
+    .about-section { padding: clamp(60px, 10vw, 110px) 0; background: var(--soft-white); }
+    .about-img-wrap { position: relative; border-radius: var(--radius); overflow: visible; }
+    .about-img-wrap img { width: 100%; border-radius: var(--radius); box-shadow: var(--shadow-lg); display: block; }
     .about-badge {
-      position:absolute; bottom:-20px; right:-20px;
-      background:linear-gradient(135deg,var(--gold),var(--gold-light));
-      color:var(--deep); width:130px; height:130px; border-radius:16px;
-      display:flex; flex-direction:column; align-items:center; justify-content:center;
-      font-family:'Playfair Display',serif; box-shadow:0 8px 30px rgba(201,168,76,.4);
+      position: absolute; bottom: -22px; right: -22px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: var(--deep); width: 120px; height: 120px; border-radius: 16px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif; box-shadow: 0 8px 30px rgba(201,168,76,0.45);
     }
-    .about-badge .num { font-size:2.2rem; font-weight:700; line-height:1; }
-    .about-badge .lbl { font-size:.65rem; letter-spacing:.1em; text-transform:uppercase; text-align:center; }
-    .value-item { display:flex; gap:14px; margin-bottom:20px; }
-    .value-icon { flex-shrink:0; width:44px; height:44px; background:rgba(201,168,76,.1); border-radius:10px; display:flex; align-items:center; justify-content:center; color:var(--gold); font-size:1.1rem; }
+    .about-badge .num { font-size: 2rem; font-weight: 700; line-height: 1.1; }
+    .about-badge .lbl { font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; text-align: center; font-family: 'DM Sans', sans-serif; font-weight: 600; line-height: 1.4; }
+    .value-item { display: flex; gap: 12px; align-items: flex-start; }
+    .value-icon { flex-shrink: 0; width: 42px; height: 42px; background: var(--gold-pale); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--gold); font-size: 1rem; border: 1px solid var(--border); }
 
     /* ── STATS ── */
-    .stats-section { padding:80px 0; background:var(--deep); }
-    .stat-item { text-align:center; }
-    .stat-num { font-family:'Playfair Display',serif; font-size:clamp(2.5rem,5vw,3.8rem); color:var(--gold); font-weight:700; display:block; line-height:1; }
-    .stat-lbl { font-size:.8rem; color:rgba(255,255,255,.6); letter-spacing:.15em; text-transform:uppercase; margin-top:.5rem; display:block; }
+    .stats-section { padding: clamp(50px,8vw,80px) 0; background: var(--deep); border-top: 1px solid rgba(255,255,255,0.06); }
+    .stat-item { text-align: center; }
+    .stat-num { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem,5vw,3.8rem); color: var(--gold); font-weight: 700; display: block; line-height: 1; }
+    .stat-lbl { font-size: 0.75rem; color: rgba(255,255,255,0.5); letter-spacing: 0.15em; text-transform: uppercase; margin-top: 0.5rem; display: block; }
 
     /* ── SERVICES ── */
-    .services-section { padding:100px 0; background:var(--cream); }
+    .services-section { padding: clamp(60px,10vw,110px) 0; background: var(--cream); }
     .service-card {
-      background:#fff; border-radius:12px; padding:2.4rem 2rem; height:100%;
-      transition:all .3s; border:1px solid rgba(201,168,76,.15); position:relative; overflow:hidden;
-      box-shadow:0 4px 20px rgba(0,0,0,.06);
+      background: #fff; border-radius: var(--radius); padding: 2rem 1.7rem; height: 100%;
+      transition: all 0.3s ease; border: 1px solid rgba(0,0,0,0.06); position: relative; overflow: hidden;
+      box-shadow: var(--shadow-sm);
     }
-    .service-card::before { content:''; position:absolute; top:0;left:0;right:0; height:3px; background:linear-gradient(90deg,var(--gold),var(--gold-light)); transform:scaleX(0); transform-origin:left; transition:.3s; }
-    .service-card:hover { transform:translateY(-8px); box-shadow:0 16px 50px rgba(0,0,0,.12); border-color:var(--gold); }
-    .service-card:hover::before { transform:scaleX(1); }
-    .service-icon { width:68px; height:68px; background:linear-gradient(135deg,rgba(201,168,76,.15),rgba(201,168,76,.05)); border-radius:16px; display:flex; align-items:center; justify-content:center; margin-bottom:1.4rem; font-size:1.6rem; color:var(--gold); transition:all .3s; }
-    .service-card:hover .service-icon { background:linear-gradient(135deg,var(--gold),var(--gold-light)); color:var(--deep); }
-    .service-card h5 { font-family:'Playfair Display',serif; font-size:1.25rem; margin-bottom:.7rem; color:var(--dark-brown); }
-    .service-card p { font-size:.9rem; color:var(--text-muted-custom); line-height:1.7; }
-    .service-time { display:inline-flex; align-items:center; gap:6px; background:rgba(201,168,76,.1); color:var(--gold); font-size:.78rem; font-weight:700; padding:4px 12px; border-radius:12px; margin-top:1rem; letter-spacing:.5px; }
+    .service-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--gold), var(--gold-light)); transform: scaleX(0); transform-origin: left; transition: 0.3s; }
+    .service-card:hover { transform: translateY(-7px); box-shadow: var(--shadow-lg); border-color: rgba(201,168,76,0.25); }
+    .service-card:hover::after { transform: scaleX(1); }
+    .service-icon { width: 60px; height: 60px; background: var(--gold-pale); border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.2rem; font-size: 1.4rem; color: var(--gold); border: 1px solid var(--border); transition: all 0.3s; }
+    .service-card:hover .service-icon { background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: var(--deep); border-color: transparent; }
+    .service-card h5 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; margin-bottom: 0.6rem; color: var(--text-body); font-weight: 700; }
+    .service-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.75; }
+    .service-time { display: inline-flex; align-items: center; gap: 6px; background: var(--gold-pale); color: var(--gold); font-size: 0.73rem; font-weight: 700; padding: 4px 12px; border-radius: 10px; margin-top: 1rem; letter-spacing: 0.04em; border: 1px solid var(--border); }
 
     /* ── SCHEDULE ── */
-    .schedule-section { padding:100px 0; background:var(--deep); }
-    .schedule-card { background:rgba(255,255,255,.05); border:1px solid rgba(201,168,76,.2); border-radius:14px; padding:18px 20px; display:flex; align-items:center; gap:16px; transition:all .3s; margin-bottom:12px; }
-    .schedule-card:hover { background:rgba(201,168,76,.1); border-color:var(--gold); transform:translateX(6px); }
-    .sched-day { background:linear-gradient(135deg,var(--gold),var(--gold-light)); color:var(--deep); border-radius:10px; padding:8px 12px; text-align:center; min-width:60px; }
-    .sched-day .abbr { font-family:'Playfair Display',serif; font-weight:700; font-size:.95rem; }
-    .sched-info h6 { color:#fff; font-size:.98rem; margin-bottom:3px; }
-    .sched-info span { color:rgba(255,255,255,.5); font-size:.83rem; }
-    .sched-time { margin-left:auto; color:var(--gold); font-weight:700; font-size:.88rem; white-space:nowrap; }
-    .tag { display:inline-block; padding:.2rem .7rem; border-radius:20px; font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.06em; }
-    .tag-gold { background:rgba(201,168,76,.2); color:var(--gold); }
-    .tag-blue { background:rgba(100,149,237,.2); color:#6495ED; }
-    .tag-green { background:rgba(102,205,170,.2); color:#66CDAA; }
+    .schedule-section { padding: clamp(60px,10vw,110px) 0; background: var(--deep); }
+    .schedule-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(201,168,76,0.15); border-radius: 12px; padding: 16px 20px; display: flex; align-items: center; gap: 16px; transition: all 0.3s; margin-bottom: 10px; flex-wrap: wrap; gap: 12px; }
+    .schedule-card:hover { background: rgba(201,168,76,0.1); border-color: var(--gold); transform: translateX(5px); }
+    .sched-day { background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: var(--deep); border-radius: 10px; padding: 8px 12px; text-align: center; min-width: 58px; flex-shrink: 0; }
+    .sched-day .abbr { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 0.95rem; }
+    .sched-info { flex: 1; min-width: 0; }
+    .sched-info h6 { color: #fff; font-size: 0.9rem; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .sched-info span { color: rgba(255,255,255,0.45); font-size: 0.78rem; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .sched-time { color: var(--gold); font-weight: 700; font-size: 0.82rem; white-space: nowrap; flex-shrink: 0; }
 
-    /* ── GROUPS / MINISTRIES ── */
-    .ministries-section { padding:100px 0; background:var(--soft-white); }
-    .group-card { background:#fff; border-radius:16px; overflow:hidden; border:1px solid rgba(0,0,0,.06); transition:all .3s; cursor:pointer; height:100%; }
-    .group-card:hover { transform:translateY(-6px); box-shadow:0 20px 50px rgba(0,0,0,.13); }
-    .group-header { padding:26px 22px 18px; }
-    .group-avatar { width:56px; height:56px; border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:1.5rem; margin-bottom:14px; }
-    .group-card h5 { font-family:'Playfair Display',serif; font-size:1.1rem; color:var(--dark-brown); margin-bottom:6px; }
-    .group-card p { color:var(--text-muted-custom); font-size:.85rem; line-height:1.55; }
-    .group-footer { padding:12px 22px; background:rgba(201,168,76,.06); border-top:1px solid rgba(201,168,76,.1); display:flex; align-items:center; gap:10px; }
-    .member-count { font-size:.8rem; color:var(--text-muted-custom); }
-    .member-count i { color:var(--gold); margin-right:4px; }
-    .btn-join-chat { margin-left:auto; background:linear-gradient(135deg,var(--gold),var(--gold-light)); color:var(--deep); border:none; border-radius:20px; padding:5px 16px; font-size:.78rem; font-weight:700; transition:all .25s; cursor:pointer; }
-    .btn-join-chat:hover { transform:scale(1.04); box-shadow:0 4px 14px rgba(201,168,76,.35); }
+    /* ── MINISTRIES ── */
+    .ministries-section { padding: clamp(60px,10vw,110px) 0; background: var(--soft-white); }
+    .group-card { background: #fff; border-radius: 16px; overflow: hidden; border: 1px solid rgba(0,0,0,0.06); transition: all 0.3s; cursor: pointer; height: 100%; box-shadow: var(--shadow-sm); }
+    .group-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: var(--border); }
+    .group-header { padding: 24px 20px 16px; }
+    .group-avatar { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 12px; }
+    .group-card h5 { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--text-body); margin-bottom: 5px; font-weight: 700; }
+    .group-card p { color: var(--text-muted); font-size: 0.82rem; line-height: 1.6; }
+    .group-footer { padding: 12px 20px; background: rgba(201,168,76,0.05); border-top: 1px solid var(--border); display: flex; align-items: center; gap: 10px; }
+    .member-count { font-size: 0.78rem; color: var(--text-muted); }
+    .member-count i { color: var(--gold); margin-right: 4px; }
+    .btn-join-chat { margin-left: auto; background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: var(--deep); border: none; border-radius: 18px; padding: 5px 14px; font-size: 0.75rem; font-weight: 700; transition: all 0.25s; cursor: pointer; white-space: nowrap; }
+    .btn-join-chat:hover { transform: scale(1.05); box-shadow: 0 4px 14px rgba(201,168,76,0.4); }
 
     /* ── EVENTS ── */
-    .events-section { padding:100px 0; background:var(--cream); }
-    .event-item { display:flex; gap:1.4rem; align-items:flex-start; padding:1.4rem; background:#fff; border-radius:12px; margin-bottom:1rem; box-shadow:0 2px 12px rgba(0,0,0,.05); transition:all .3s; border:1px solid transparent; }
-    .event-item:hover { transform:translateX(6px); box-shadow:0 8px 30px rgba(0,0,0,.1); border-color:var(--gold); }
-    .event-date { min-width:62px; text-align:center; background:linear-gradient(135deg,var(--gold),var(--gold-light)); color:var(--deep); border-radius:12px; padding:.6rem .4rem; }
-    .event-date .day { font-size:1.8rem; font-weight:700; line-height:1; font-family:'Playfair Display',serif; }
-    .event-date .mon { font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; font-weight:700; }
-    .event-info h6 { font-family:'Playfair Display',serif; font-size:1.05rem; margin-bottom:.3rem; color:var(--dark-brown); }
-    .event-info p { font-size:.85rem; color:var(--text-muted-custom); margin:0; }
-    .event-info .meta { font-size:.78rem; color:var(--gold); font-weight:700; margin-top:.4rem; }
+    .events-section { padding: clamp(60px,10vw,110px) 0; background: var(--cream); }
+    .event-item { display: flex; gap: 1.2rem; align-items: flex-start; padding: 1.2rem; background: #fff; border-radius: 12px; margin-bottom: 0.9rem; box-shadow: var(--shadow-sm); transition: all 0.3s; border: 1px solid transparent; }
+    .event-item:hover { transform: translateX(5px); box-shadow: var(--shadow-md); border-color: var(--border); }
+    .event-date { min-width: 58px; text-align: center; background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: var(--deep); border-radius: 10px; padding: 0.6rem 0.4rem; flex-shrink: 0; }
+    .event-date .day { font-size: 1.7rem; font-weight: 700; line-height: 1; font-family: 'Cormorant Garamond', serif; }
+    .event-date .mon { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; }
+    .event-info h6 { font-family: 'Cormorant Garamond', serif; font-size: 1rem; margin-bottom: 0.3rem; color: var(--text-body); font-weight: 700; }
+    .event-info p { font-size: 0.82rem; color: var(--text-muted); margin: 0; line-height: 1.5; }
+    .event-meta { font-size: 0.73rem; color: var(--gold); font-weight: 700; margin-top: 0.4rem; }
 
     /* ── GIVE ── */
-    .give-section { padding:100px 0; background:linear-gradient(135deg,var(--deep) 0%,var(--navy2) 100%); position:relative; overflow:hidden; }
-    .give-section::before { content:'\271D'; position:absolute; font-size:40rem; color:rgba(201,168,76,.03); top:50%;left:50%; transform:translate(-50%,-50%); }
-    .give-card { background:rgba(255,255,255,.06); backdrop-filter:blur(10px); border:1px solid rgba(201,168,76,.2); border-radius:16px; padding:2.5rem; text-align:center; transition:all .3s; }
-    .give-card:hover { background:rgba(201,168,76,.1); border-color:var(--gold); transform:translateY(-4px); }
-    .give-card i { font-size:2.5rem; color:var(--gold); margin-bottom:1rem; }
-    .give-card h5 { font-family:'Playfair Display',serif; color:#fff; font-size:1.2rem; margin-bottom:.7rem; }
-    .give-card p { color:rgba(255,255,255,.65); font-size:.88rem; line-height:1.6; }
-    .give-card .btn-give { margin-top:1rem; background:linear-gradient(135deg,var(--gold),var(--gold-light)); color:var(--deep); border:none; border-radius:20px; padding:7px 20px; font-size:.82rem; font-weight:700; cursor:pointer; transition:all .25s; }
-    .give-card .btn-give:hover { transform:scale(1.04); }
+    .give-section { padding: clamp(60px,10vw,110px) 0; background: linear-gradient(155deg, var(--deep) 0%, var(--navy2) 100%); position: relative; overflow: hidden; }
+    .give-section::before { content: '✝'; position: absolute; font-size: clamp(20rem,40vw,45rem); color: rgba(201,168,76,0.025); top: 50%; left: 50%; transform: translate(-50%,-50%); font-family: 'Cormorant Garamond', serif; pointer-events: none; }
+    .give-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(201,168,76,0.2); border-radius: 16px; padding: 2.2rem; text-align: center; transition: all 0.3s; height: 100%; }
+    .give-card:hover { background: rgba(201,168,76,0.09); border-color: rgba(201,168,76,0.45); transform: translateY(-5px); }
+    .give-card i { font-size: 2.2rem; color: var(--gold); margin-bottom: 1rem; display: block; }
+    .give-card h5 { font-family: 'Cormorant Garamond', serif; color: #fff; font-size: 1.2rem; margin-bottom: 0.6rem; font-weight: 700; }
+    .give-card p { color: rgba(255,255,255,0.6); font-size: 0.85rem; line-height: 1.65; }
+    .btn-give { margin-top: 1.2rem; background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: var(--deep); border: none; border-radius: 20px; padding: 8px 22px; font-size: 0.8rem; font-weight: 700; cursor: pointer; transition: all 0.25s; display: inline-block; }
+    .btn-give:hover { transform: scale(1.04); box-shadow: 0 4px 14px rgba(201,168,76,0.4); }
 
     /* ── TESTIMONIALS ── */
-    .testimonials-section { padding:100px 0; background:var(--soft-white); }
-    .testimonial-card { background:var(--cream); border-radius:12px; padding:2rem; height:100%; position:relative; }
-    .testimonial-card::before { content:'\201C'; font-family:'Playfair Display',serif; font-size:5rem; color:var(--gold); opacity:.3; position:absolute; top:.5rem; left:1.2rem; line-height:1; }
-    .testimonial-card p { font-size:.95rem; color:var(--text-muted-custom); line-height:1.8; font-style:italic; padding-top:1.5rem; }
-    .testimonial-author { display:flex; align-items:center; gap:.8rem; margin-top:1.2rem; }
-    .author-avatar { width:48px; height:48px; border-radius:50%; background:linear-gradient(135deg,var(--gold),var(--gold-light)); display:flex; align-items:center; justify-content:center; color:var(--deep); font-weight:700; font-size:1.1rem; }
-    .author-name { font-weight:700; font-size:.92rem; color:var(--dark-brown); }
-    .author-role { font-size:.78rem; color:var(--gold); }
+    .testimonials-section { padding: clamp(60px,10vw,110px) 0; background: var(--soft-white); }
+    .testimonial-card { background: var(--cream); border-radius: 14px; padding: 2rem; height: 100%; position: relative; border: 1px solid var(--border); transition: box-shadow 0.3s; }
+    .testimonial-card:hover { box-shadow: var(--shadow-md); }
+    .testimonial-card::before { content: '\201C'; font-family: 'Cormorant Garamond', serif; font-size: 5.5rem; color: var(--gold); opacity: 0.25; position: absolute; top: 0.8rem; left: 1.2rem; line-height: 1; pointer-events: none; }
+    .testimonial-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.85; font-style: italic; padding-top: 1.5rem; }
+    .author-avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--gold), var(--gold-light)); display: flex; align-items: center; justify-content: center; color: var(--deep); font-weight: 700; font-size: 1rem; flex-shrink: 0; }
+    .author-name { font-weight: 700; font-size: 0.88rem; color: var(--text-body); }
+    .author-role { font-size: 0.73rem; color: var(--gold); }
 
     /* ── CONTACT ── */
-    .contact-section { padding:100px 0; background:var(--cream); }
-    .contact-card { background:#fff; border-radius:12px; padding:2rem; box-shadow:0 4px 20px rgba(0,0,0,.06); height:100%; border:1px solid rgba(201,168,76,.1); }
-    .contact-card i { font-size:1.8rem; color:var(--gold); margin-bottom:1rem; }
-    .contact-card h6 { font-family:'Playfair Display',serif; font-size:1.05rem; margin-bottom:.5rem; color:var(--dark-brown); }
-    .contact-card p { font-size:.9rem; color:var(--text-muted-custom); margin:0; line-height:1.6; }
-    .form-control, .form-select {
-      border:1.5px solid rgba(0,0,0,.1); border-radius:10px; padding:.8rem 1rem; font-size:.92rem; transition:all .25s;
-    }
-    .form-control:focus, .form-select:focus { border-color:var(--gold); box-shadow:0 0 0 3px rgba(201,168,76,.15); }
+    .contact-section { padding: clamp(60px,10vw,110px) 0; background: var(--cream); }
+    .contact-card { background: #fff; border-radius: 12px; padding: 1.8rem; box-shadow: var(--shadow-sm); height: 100%; border: 1px solid rgba(0,0,0,0.05); transition: all 0.3s; text-align: center; }
+    .contact-card:hover { box-shadow: var(--shadow-md); border-color: var(--border); transform: translateY(-3px); }
+    .contact-card i { font-size: 1.6rem; color: var(--gold); margin-bottom: 0.8rem; display: block; }
+    .contact-card h6 { font-family: 'Cormorant Garamond', serif; font-size: 1rem; margin-bottom: 0.4rem; color: var(--text-body); font-weight: 700; }
+    .contact-card p { font-size: 0.83rem; color: var(--text-muted); margin: 0; line-height: 1.65; }
+    .form-control, .form-select { border: 1.5px solid rgba(0,0,0,0.09); border-radius: 10px; padding: 0.75rem 1rem; font-size: 0.88rem; transition: all 0.25s; font-family: 'DM Sans', sans-serif; background: #fff; }
+    .form-control:focus, .form-select:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201,168,76,0.12); outline: none; }
+    .form-label { font-size: 0.8rem; font-weight: 600; color: var(--text-body); }
 
     /* ── NEWSLETTER ── */
-    .newsletter-section { padding:70px 0; background:var(--gold); }
-    .newsletter-section h3 { font-family:'Playfair Display',serif; color:var(--deep); font-size:2rem; margin-bottom:.5rem; }
-    .newsletter-section p { color:rgba(44,24,16,.75); font-size:.95rem; }
-    .newsletter-section .form-control { border:none; border-radius:30px 0 0 30px; }
-    .newsletter-section .btn-sub { border-radius:0 30px 30px 0; background:var(--deep); color:#fff; padding:.85rem 2rem; font-weight:700; font-size:.85rem; letter-spacing:.08em; text-transform:uppercase; border:none; cursor:pointer; transition:background .2s; }
-    .newsletter-section .btn-sub:hover { background:#000; }
+    .newsletter-section { padding: clamp(50px,8vw,70px) 0; background: var(--gold); }
+    .newsletter-section h3 { font-family: 'Cormorant Garamond', serif; color: var(--deep); font-size: clamp(1.6rem,3vw,2rem); margin-bottom: 0.4rem; font-weight: 700; }
+    .newsletter-section p { color: rgba(44,24,16,0.72); font-size: 0.9rem; }
+    .nl-input-group { display: flex; border-radius: 30px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+    .nl-input { flex: 1; border: none; padding: 0.85rem 1.2rem; font-size: 0.88rem; outline: none; font-family: 'DM Sans', sans-serif; }
+    .nl-btn { background: var(--deep); color: #fff; border: none; padding: 0.85rem 1.8rem; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: background 0.2s; white-space: nowrap; }
+    .nl-btn:hover { background: #000; }
 
     /* ── FOOTER ── */
-    footer { background:var(--deep); padding:70px 0 30px; color:rgba(255,255,255,.7); }
-    footer h5 { font-family:'Playfair Display',serif; color:#fff; font-size:1.1rem; margin-bottom:1.2rem; }
-    footer a { color:rgba(255,255,255,.65); text-decoration:none; font-size:.88rem; display:block; margin-bottom:.5rem; transition:color .2s; }
-    footer a:hover { color:var(--gold); }
-    footer .social-icons a { display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border-radius:10px; background:rgba(255,255,255,.07); margin-right:.4rem; font-size:.9rem; color:rgba(255,255,255,.7); margin-bottom:0; transition:all .25s; }
-    footer .social-icons a:hover { background:var(--gold); color:var(--deep); }
-    .footer-bottom { border-top:1px solid rgba(255,255,255,.08); padding-top:1.5rem; margin-top:3rem; font-size:.83rem; color:rgba(255,255,255,.4); }
+    footer { background: var(--deep); padding: clamp(50px,8vw,70px) 0 30px; color: rgba(255,255,255,0.65); }
+    footer h5 { font-family: 'Cormorant Garamond', serif; color: #fff; font-size: 1.1rem; margin-bottom: 1.2rem; font-weight: 700; }
+    footer a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.85rem; display: block; margin-bottom: 0.5rem; transition: color 0.2s; }
+    footer a:hover { color: var(--gold); }
+    .social-link { display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 10px; background: rgba(255,255,255,0.07); margin-right: 0.4rem; margin-bottom: 0.4rem; font-size: 0.88rem; color: rgba(255,255,255,0.65); text-decoration: none; transition: all 0.25s; }
+    .social-link:hover { background: var(--gold); color: var(--deep); }
+    .footer-divider { border-top: 1px solid rgba(255,255,255,0.07); padding-top: 1.5rem; margin-top: 3rem; font-size: 0.8rem; color: rgba(255,255,255,0.35); }
 
     /* ── SCROLL TOP ── */
-    #scrollTop { position:fixed; bottom:6.5rem; right:2rem; width:46px; height:46px; background:linear-gradient(135deg,var(--gold),var(--gold-light)); color:var(--deep); border:none; border-radius:50%; font-size:1rem; display:none; align-items:center; justify-content:center; cursor:pointer; z-index:999; box-shadow:0 4px 20px rgba(201,168,76,.5); transition:all .3s; }
-    #scrollTop:hover { transform:translateY(-3px); }
+    #scrollTop { position: fixed; bottom: 7rem; right: 1.5rem; width: 44px; height: 44px; background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: var(--deep); border: none; border-radius: 50%; font-size: 0.9rem; display: none; align-items: center; justify-content: center; cursor: pointer; z-index: 999; box-shadow: 0 4px 18px rgba(201,168,76,0.5); transition: all 0.3s; }
+    #scrollTop:hover { transform: translateY(-3px); }
 
     /* ── FADE UP ── */
-    .fade-up { opacity:0; transform:translateY(30px); transition:all .7s ease; }
-    .fade-up.visible { opacity:1; transform:translateY(0); }
+    .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
 
-    /* ── CHAT MODAL ── */
-    .chat-modal .modal-content { border-radius:20px; border:none; overflow:hidden; box-shadow:0 30px 80px rgba(0,0,0,.25); }
-    .chat-header { background:linear-gradient(135deg,var(--deep),var(--navy2)); padding:18px 22px; display:flex; align-items:center; gap:14px; }
-    .chat-avatar { width:46px; height:46px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.3rem; }
-    .chat-header-info h5 { color:#fff; margin:0; font-size:1.05rem; }
-    .chat-header-info small { color:rgba(255,255,255,.5); font-size:.75rem; }
-    .chat-body { background:var(--chat-bg); height:360px; overflow-y:auto; padding:18px; display:flex; flex-direction:column; gap:10px; }
-    .chat-body::-webkit-scrollbar { width:4px; }
-    .chat-body::-webkit-scrollbar-thumb { background:rgba(0,0,0,.15); border-radius:4px; }
-    .msg { max-width:78%; }
-    .msg-in { align-self:flex-start; }
-    .msg-out { align-self:flex-end; }
-    .msg-bubble { padding:10px 15px; border-radius:16px; font-size:.87rem; line-height:1.5; }
-    .msg-in .msg-bubble { background:#fff; color:var(--dark-brown); border-bottom-left-radius:4px; box-shadow:0 2px 6px rgba(0,0,0,.06); }
-    .msg-out .msg-bubble { background:linear-gradient(135deg,var(--gold),var(--gold-light)); color:var(--deep); border-bottom-right-radius:4px; font-weight:500; }
-    .msg-sender { font-size:.72rem; color:var(--text-muted-custom); margin-bottom:3px; font-weight:700; }
-    .msg-time { font-size:.67rem; color:var(--text-muted-custom); margin-top:3px; }
-    .msg-in .msg-time { text-align:left; }
-    .msg-out .msg-time { text-align:right; }
-    .announce-banner { background:linear-gradient(135deg,rgba(201,168,76,.18),rgba(201,168,76,.08)); border:1px solid rgba(201,168,76,.3); border-radius:10px; padding:10px 14px; text-align:center; font-size:.82rem; color:var(--dark-brown); }
-    .announce-banner i { color:var(--gold); margin-right:6px; }
-    .chat-footer { background:#fff; padding:14px 18px; border-top:1px solid rgba(0,0,0,.07); }
-    .chat-input-wrap { display:flex; gap:8px; align-items:center; }
-    .chat-input { flex:1; border:1.5px solid rgba(0,0,0,.1); border-radius:24px; padding:9px 16px; font-size:.87rem; outline:none; transition:.25s; }
-    .chat-input:focus { border-color:var(--gold); }
-    .btn-send { width:40px; height:40px; background:linear-gradient(135deg,var(--gold),var(--gold-light)); border:none; border-radius:50%; display:flex; align-items:center; justify-content:center; color:var(--deep); cursor:pointer; transition:.25s; flex-shrink:0; }
-    .btn-send:hover { transform:scale(1.1); box-shadow:0 4px 14px rgba(201,168,76,.4); }
-    .chat-actions { display:flex; gap:7px; margin-bottom:8px; flex-wrap:wrap; }
-    .chat-action-btn { background:transparent; border:1px solid rgba(0,0,0,.1); border-radius:20px; padding:3px 11px; font-size:.74rem; color:var(--text-muted-custom); cursor:pointer; transition:.2s; }
-    .chat-action-btn:hover { border-color:var(--gold); color:var(--gold); }
-    .rooms-list { padding:12px 18px; background:rgba(201,168,76,.04); border-bottom:1px solid rgba(0,0,0,.07); display:flex; gap:7px; flex-wrap:wrap; align-items:center; }
-    .room-chip { padding:3px 12px; background:#fff; border:1px solid rgba(0,0,0,.1); border-radius:20px; font-size:.77rem; cursor:pointer; transition:.2s; font-weight:600; }
-    .room-chip.active, .room-chip:hover { background:var(--gold); color:var(--deep); border-color:var(--gold); }
-    .room-chip-add { padding:3px 10px; background:transparent; border:1.5px dashed rgba(201,168,76,.4); border-radius:20px; font-size:.77rem; cursor:pointer; transition:.2s; color:var(--gold); font-weight:600; }
-    .room-chip-add:hover { background:rgba(201,168,76,.1); border-style:solid; }
-    .role-badge { padding:2px 10px; border-radius:10px; font-size:.72rem; font-weight:700; letter-spacing:.5px; }
-    .role-leader { background:rgba(201,168,76,.15); color:var(--gold); }
-    .role-member { background:rgba(0,0,0,.05); color:var(--text-muted-custom); }
+    /* ── CHAT GROUP MODAL ── */
+    .chat-modal .modal-content { border-radius: 20px; border: none; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,0.25); }
+    .chat-header-bar { background: linear-gradient(135deg, var(--deep), var(--navy2)); padding: 16px 20px; display: flex; align-items: center; gap: 14px; }
+    .chat-avatar-lg { width: 46px; height: 46px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
+    .chat-header-info h5 { color: #fff; margin: 0; font-size: 1rem; font-family: 'Cormorant Garamond', serif; font-weight: 700; }
+    .chat-header-info small { color: rgba(255,255,255,0.45); font-size: 0.72rem; }
+    .role-badge { padding: 3px 12px; border-radius: 12px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.04em; }
+    .role-leader { background: rgba(201,168,76,0.18); color: var(--gold); }
+    .role-member { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.55); }
+    .rooms-bar { padding: 10px 16px; background: rgba(201,168,76,0.04); border-bottom: 1px solid rgba(0,0,0,0.07); display: flex; gap: 7px; flex-wrap: wrap; align-items: center; }
+    .room-chip { padding: 4px 13px; background: #fff; border: 1px solid rgba(0,0,0,0.1); border-radius: 20px; font-size: 0.74rem; cursor: pointer; transition: 0.2s; font-weight: 600; }
+    .room-chip.active, .room-chip:hover { background: var(--gold); color: var(--deep); border-color: var(--gold); }
+    .room-chip-add { padding: 4px 11px; background: transparent; border: 1.5px dashed rgba(201,168,76,0.45); border-radius: 20px; font-size: 0.74rem; cursor: pointer; transition: 0.2s; color: var(--gold); font-weight: 600; }
+    .room-chip-add:hover { background: var(--gold-pale); border-style: solid; }
+    .chat-body-area { background: var(--chat-bg); height: 340px; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+    .chat-body-area::-webkit-scrollbar { width: 4px; }
+    .chat-body-area::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 4px; }
+    .chat-msg { max-width: 78%; }
+    .msg-in { align-self: flex-start; }
+    .msg-out { align-self: flex-end; }
+    .msg-bubble { padding: 10px 14px; border-radius: 16px; font-size: 0.86rem; line-height: 1.55; }
+    .msg-in .msg-bubble { background: #fff; color: var(--text-body); border-bottom-left-radius: 4px; box-shadow: 0 2px 6px rgba(0,0,0,0.06); }
+    .msg-out .msg-bubble { background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: var(--deep); border-bottom-right-radius: 4px; font-weight: 500; }
+    .msg-sender { font-size: 0.69rem; color: var(--text-muted); margin-bottom: 3px; font-weight: 700; }
+    .msg-time { font-size: 0.65rem; color: var(--text-muted); margin-top: 3px; }
+    .msg-out .msg-time { text-align: right; }
+    .announce-banner { background: linear-gradient(135deg, rgba(201,168,76,0.18), rgba(201,168,76,0.08)); border: 1px solid rgba(201,168,76,0.3); border-radius: 10px; padding: 10px 14px; text-align: center; font-size: 0.8rem; color: var(--text-body); }
+    .announce-banner i { color: var(--gold); margin-right: 6px; }
+    .chat-footer-area { background: #fff; padding: 12px 16px; border-top: 1px solid rgba(0,0,0,0.07); }
+    .chat-actions-bar { display: flex; gap: 6px; margin-bottom: 8px; flex-wrap: wrap; }
+    .chat-action-btn { background: transparent; border: 1px solid rgba(0,0,0,0.1); border-radius: 20px; padding: 4px 12px; font-size: 0.72rem; color: var(--text-muted); cursor: pointer; transition: 0.2s; }
+    .chat-action-btn:hover { border-color: var(--gold); color: var(--gold); }
+    .chat-input-row { display: flex; gap: 8px; align-items: center; }
+    .chat-input { flex: 1; border: 1.5px solid rgba(0,0,0,0.1); border-radius: 22px; padding: 9px 16px; font-size: 0.86rem; outline: none; transition: 0.25s; font-family: 'DM Sans', sans-serif; }
+    .chat-input:focus { border-color: var(--gold); }
+    .btn-send { width: 40px; height: 40px; background: linear-gradient(135deg, var(--gold), var(--gold-light)); border: none; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--deep); cursor: pointer; transition: 0.25s; flex-shrink: 0; }
+    .btn-send:hover { transform: scale(1.1); box-shadow: 0 4px 14px rgba(201,168,76,0.4); }
 
     /* ── AI CHATBOT ── */
     #aiBotBtn {
-      position:fixed; bottom:2rem; right:2rem; width:56px; height:56px;
-      background:linear-gradient(135deg,var(--gold),var(--gold-light));
-      color:var(--deep); border:none; border-radius:50%; font-size:1.3rem;
-      cursor:pointer; z-index:1050; box-shadow:0 6px 24px rgba(201,168,76,.5);
-      transition:all .3s; display:flex; align-items:center; justify-content:center;
+      position: fixed; bottom: 1.8rem; right: 1.5rem; width: 56px; height: 56px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: var(--deep); border: none; border-radius: 50%; font-size: 1.25rem;
+      cursor: pointer; z-index: 1050; box-shadow: 0 6px 24px rgba(201,168,76,0.55);
+      transition: all 0.3s; display: flex; align-items: center; justify-content: center;
     }
-    #aiBotBtn:hover { transform:scale(1.1) rotate(-5deg); }
+    #aiBotBtn:hover { transform: scale(1.1) rotate(-5deg); }
+    #aiBotBtn .bot-pulse {
+      position: absolute; width: 100%; height: 100%; border-radius: 50%;
+      background: var(--gold); opacity: 0; animation: pulse 2s ease-out infinite;
+    }
+    @keyframes pulse { 0% { transform: scale(1); opacity: 0.5; } 100% { transform: scale(1.8); opacity: 0; } }
     #aiBotWindow {
-      position:fixed; bottom:6rem; right:2rem; width:360px; max-height:520px;
-      background:#fff; border-radius:20px; box-shadow:0 20px 60px rgba(0,0,0,.2);
-      z-index:1049; display:none; flex-direction:column; overflow:hidden;
-      border:1px solid rgba(201,168,76,.2);
+      position: fixed; bottom: 5.5rem; right: 1.5rem; width: min(370px, calc(100vw - 2rem));
+      max-height: 540px; background: #fff; border-radius: 22px;
+      box-shadow: 0 24px 70px rgba(0,0,0,0.22); z-index: 1049;
+      display: none; flex-direction: column; overflow: hidden;
+      border: 1px solid rgba(201,168,76,0.2);
     }
-    #aiBotWindow.open { display:flex; }
-    .bot-header {
-      background:linear-gradient(135deg,var(--deep),var(--navy2));
-      padding:16px 18px; display:flex; align-items:center; gap:12px;
-    }
-    .bot-avatar { width:40px; height:40px; border-radius:12px; background:linear-gradient(135deg,var(--gold),var(--gold-light)); display:flex; align-items:center; justify-content:center; font-size:1.1rem; color:var(--deep); flex-shrink:0; }
-    .bot-header-info h6 { color:#fff; margin:0; font-size:.95rem; font-family:'Playfair Display',serif; }
-    .bot-header-info small { color:rgba(255,255,255,.5); font-size:.72rem; }
-    .bot-online { width:9px; height:9px; background:#4CAF50; border-radius:50%; display:inline-block; margin-right:5px; }
-    .bot-close { margin-left:auto; background:transparent; border:none; color:rgba(255,255,255,.6); cursor:pointer; font-size:1rem; padding:2px 6px; border-radius:4px; transition:.2s; }
-    .bot-close:hover { color:#fff; background:rgba(255,255,255,.1); }
-    .bot-body { flex:1; overflow-y:auto; padding:16px; display:flex; flex-direction:column; gap:10px; background:var(--chat-bg); max-height:340px; }
-    .bot-body::-webkit-scrollbar { width:4px; }
-    .bot-body::-webkit-scrollbar-thumb { background:rgba(0,0,0,.12); border-radius:4px; }
-    .bot-msg { max-width:82%; }
-    .bot-msg-in { align-self:flex-start; }
-    .bot-msg-out { align-self:flex-end; }
-    .bot-msg-in .msg-bubble { background:#fff; color:var(--dark-brown); border-bottom-left-radius:4px; box-shadow:0 2px 6px rgba(0,0,0,.06); }
-    .bot-msg-out .msg-bubble { background:linear-gradient(135deg,var(--gold),var(--gold-light)); color:var(--deep); border-bottom-right-radius:4px; }
-    .bot-typing { display:flex; gap:4px; align-items:center; padding:10px 14px; background:#fff; border-radius:16px; border-bottom-left-radius:4px; width:60px; box-shadow:0 2px 6px rgba(0,0,0,.06); }
-    .dot { width:7px; height:7px; border-radius:50%; background:var(--gold); animation:typing .9s infinite; }
-    .dot:nth-child(2) { animation-delay:.15s; }
-    .dot:nth-child(3) { animation-delay:.3s; }
-    @keyframes typing { 0%,60%,100%{transform:translateY(0);opacity:.6} 30%{transform:translateY(-6px);opacity:1} }
-    .bot-footer { padding:12px 14px; background:#fff; border-top:1px solid rgba(0,0,0,.07); display:flex; gap:8px; }
-    .bot-input { flex:1; border:1.5px solid rgba(0,0,0,.1); border-radius:20px; padding:8px 14px; font-size:.85rem; outline:none; transition:.25s; }
-    .bot-input:focus { border-color:var(--gold); }
-    .bot-send { width:38px; height:38px; background:linear-gradient(135deg,var(--gold),var(--gold-light)); border:none; border-radius:50%; color:var(--deep); font-size:.9rem; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:.25s; flex-shrink:0; }
-    .bot-send:hover { transform:scale(1.1); }
-    .bot-quick-btns { display:flex; gap:6px; flex-wrap:wrap; padding:8px 14px 0; }
-    .bot-quick-btn { background:rgba(201,168,76,.12); border:1px solid rgba(201,168,76,.3); color:var(--dark-brown); border-radius:14px; padding:4px 11px; font-size:.75rem; cursor:pointer; transition:.2s; }
-    .bot-quick-btn:hover { background:var(--gold); color:var(--deep); border-color:var(--gold); }
+    #aiBotWindow.open { display: flex; animation: botSlideIn 0.3s cubic-bezier(0.34,1.56,0.64,1); }
+    @keyframes botSlideIn { from { opacity: 0; transform: scale(0.9) translateY(12px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+    .bot-header { background: linear-gradient(135deg, var(--deep), var(--navy2)); padding: 15px 18px; display: flex; align-items: center; gap: 12px; }
+    .bot-avatar-icon { width: 40px; height: 40px; border-radius: 12px; background: linear-gradient(135deg, var(--gold), var(--gold-light)); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; color: var(--deep); flex-shrink: 0; font-family: 'Cormorant Garamond', serif; font-weight: 700; }
+    .bot-header-info h6 { color: #fff; margin: 0; font-size: 0.92rem; font-family: 'Cormorant Garamond', serif; font-weight: 700; }
+    .bot-header-info small { color: rgba(255,255,255,0.45); font-size: 0.68rem; }
+    .bot-online-dot { width: 8px; height: 8px; background: #4CAF50; border-radius: 50%; display: inline-block; margin-right: 5px; animation: blink 2s ease-in-out infinite; }
+    @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+    .bot-close { margin-left: auto; background: transparent; border: none; color: rgba(255,255,255,0.55); cursor: pointer; font-size: 0.95rem; padding: 4px 8px; border-radius: 6px; transition: 0.2s; }
+    .bot-close:hover { color: #fff; background: rgba(255,255,255,0.1); }
+    .bot-body { flex: 1; overflow-y: auto; padding: 14px; display: flex; flex-direction: column; gap: 10px; background: var(--chat-bg); max-height: 320px; }
+    .bot-body::-webkit-scrollbar { width: 4px; }
+    .bot-body::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); border-radius: 4px; }
+    .bot-msg { max-width: 85%; }
+    .bot-msg-in { align-self: flex-start; }
+    .bot-msg-out { align-self: flex-end; }
+    .bot-msg-in .msg-bubble { background: #fff; color: var(--text-body); border-bottom-left-radius: 4px; box-shadow: 0 2px 6px rgba(0,0,0,0.06); }
+    .bot-msg-out .msg-bubble { background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: var(--deep); border-bottom-right-radius: 4px; font-weight: 500; }
+    .bot-typing { display: flex; gap: 4px; align-items: center; padding: 12px 16px; background: #fff; border-radius: 16px; border-bottom-left-radius: 4px; width: 62px; box-shadow: 0 2px 6px rgba(0,0,0,0.06); }
+    .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); animation: typing 0.9s infinite ease-in-out; }
+    .dot:nth-child(2) { animation-delay: 0.15s; }
+    .dot:nth-child(3) { animation-delay: 0.3s; }
+    @keyframes typing { 0%,60%,100% { transform: translateY(0); opacity: 0.5; } 30% { transform: translateY(-6px); opacity: 1; } }
+    .bot-quick-btns { display: flex; gap: 6px; flex-wrap: wrap; padding: 10px 14px; border-bottom: 1px solid rgba(0,0,0,0.06); background: rgba(201,168,76,0.04); }
+    .bot-quick-btn { background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.25); color: var(--text-body); border-radius: 14px; padding: 5px 12px; font-size: 0.73rem; cursor: pointer; transition: 0.2s; font-family: 'DM Sans', sans-serif; }
+    .bot-quick-btn:hover { background: var(--gold); color: var(--deep); border-color: var(--gold); }
+    .bot-footer { padding: 12px 14px; background: #fff; border-top: 1px solid rgba(0,0,0,0.07); display: flex; gap: 8px; align-items: center; }
+    .bot-input { flex: 1; border: 1.5px solid rgba(0,0,0,0.1); border-radius: 22px; padding: 9px 16px; font-size: 0.85rem; outline: none; transition: 0.25s; font-family: 'DM Sans', sans-serif; }
+    .bot-input:focus { border-color: var(--gold); }
+    .bot-send { width: 38px; height: 38px; background: linear-gradient(135deg, var(--gold), var(--gold-light)); border: none; border-radius: 50%; color: var(--deep); font-size: 0.88rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.25s; flex-shrink: 0; }
+    .bot-send:hover { transform: scale(1.1); }
+    .bot-category-badge { display: inline-flex; align-items: center; gap: 4px; background: var(--gold-pale); color: var(--gold); border-radius: 8px; padding: 2px 8px; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; border: 1px solid var(--border); margin-bottom: 4px; }
+
+    /* ── PRAYER MODAL ── */
+    .modal-content { border-radius: 18px; overflow: hidden; border: none; }
+    .modal-header-custom { background: linear-gradient(135deg, var(--deep), var(--navy2)); padding: 1.2rem 1.5rem; }
+    .modal-header-custom h5 { color: #fff; margin: 0; font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 700; }
+
+    /* ── TOAST ── */
+    #toastWrap { position: fixed; bottom: 7.5rem; left: 50%; transform: translateX(-50%); z-index: 9999; min-width: 270px; max-width: 380px; }
+    #mainToast { background: var(--deep); border-radius: 12px; border-left: 4px solid var(--gold) !important; }
+    .toast-body { font-size: 0.88rem; color: #fff; }
 
     /* ── RESPONSIVE ── */
-    @media(max-width:768px) {
-      .about-badge { width:100px; height:100px; right:0; bottom:-15px; }
-      .about-badge .num { font-size:1.7rem; }
-      .hero-cross { display:none; }
-      .info-item { font-size:.8rem; }
-      #aiBotWindow { width:calc(100vw - 2rem); right:1rem; }
-      .schedule-card { flex-wrap:wrap; }
-      .sched-time { margin-left:0; }
+    @media (max-width: 991px) {
+      .hero { background-attachment: scroll; }
+      .hero-cross-bg { display: none; }
+      .about-badge { width: 100px; height: 100px; right: 0; bottom: -15px; }
+      .about-badge .num { font-size: 1.7rem; }
+      .navbar-collapse { background: rgba(17,24,39,0.98); border-radius: 12px; padding: 1rem; margin-top: 0.5rem; border: 1px solid rgba(201,168,76,0.15); }
     }
-    @media(max-width:576px) {
-      .hero-stats { gap:16px; }
+    @media (max-width: 767px) {
+      .hero-stats { gap: 1.2rem; }
+      .hstat-num { font-size: 1.8rem; }
+      .schedule-card { flex-direction: column; align-items: flex-start; }
+      .sched-time { margin-top: -6px; }
+      .event-item { flex-wrap: wrap; }
+      .info-strip .row > div { border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 0.5rem; margin-bottom: 0.5rem; }
+      .info-strip .row > div:last-child { border-bottom: none; margin-bottom: 0; }
+      #aiBotWindow { right: 0.8rem; bottom: 5rem; width: calc(100vw - 1.6rem); }
+      #aiBotBtn, #scrollTop { right: 1rem; }
+      #scrollTop { bottom: 6rem; }
+      .nl-input-group { flex-direction: column; border-radius: 12px; overflow: hidden; }
+      .nl-input { border-radius: 12px 12px 0 0; }
+      .nl-btn { border-radius: 0 0 12px 12px; text-align: center; }
+    }
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 2.4rem; }
+      .btn-gold, .btn-outline-ghost { padding: 0.7rem 1.4rem; font-size: 0.78rem; }
+      .chat-modal .modal-dialog { margin: 0.5rem; }
     }
   </style>
 </head>
@@ -451,14 +389,14 @@
       <span class="brand-cross">✝</span>
       <span class="brand-text">
         <span class="brand-top">Olives Fellowship</span>
-        <span class="brand-bottom">Temple</span>
+        <span class="brand-sub">Temple · Kigali</span>
       </span>
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navMenu">
-      <ul class="navbar-nav ms-auto align-items-lg-center">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
         <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
         <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
         <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
@@ -478,7 +416,7 @@
 </nav>
 
 <!-- TICKER -->
-<div class="ticker-wrap" style="margin-top:62px">
+<div class="ticker-wrap" style="margin-top:60px">
   <div class="ticker" id="ticker">
     <span><i class="fas fa-star"></i>Sunday Worship: 8:00 AM &amp; 10:30 AM</span>
     <span><i class="fas fa-music"></i>Choir Practice: Every Wednesday 6PM</span>
@@ -497,17 +435,17 @@
 
 <!-- HERO -->
 <section class="hero" id="home">
-  <div class="hero-overlay"></div>
-  <div class="hero-cross">✝</div>
+  <div class="hero-pattern"></div>
+  <div class="hero-cross-bg">✝</div>
   <div class="container position-relative" style="z-index:2">
     <div class="row">
-      <div class="col-lg-8">
-        <span class="hero-badge"><i class="fas fa-star me-1"></i>Welcome to Olives Fellowship Temple</span>
+      <div class="col-lg-8 col-xl-7">
+        <span class="hero-badge"><i class="fas fa-dove"></i>Welcome to Olives Fellowship Temple</span>
         <h1>A Place of <em>Faith,</em><br>Hope &amp; Love</h1>
-        <p>Join our family of believers as we worship together, grow in faith, and serve our community with joy and compassion every day.</p>
+        <p class="hero-desc">Join our family of believers as we worship together, grow in faith, and serve our community with joy and compassion every day.</p>
         <div class="d-flex flex-wrap gap-3">
-          <a href="#services" class="btn-gold"><i class="fas fa-church me-2"></i>Our Services</a>
-          <a href="#about" class="btn-outline-gold"><i class="fas fa-play-circle me-2"></i>Learn More</a>
+          <a href="#services" class="btn-gold"><i class="fas fa-church"></i>Our Services</a>
+          <a href="#about" class="btn-outline-ghost"><i class="fas fa-play-circle"></i>Learn More</a>
         </div>
         <div class="hero-stats">
           <div class="hstat"><span class="hstat-num">2400+</span><span class="hstat-lbl">Members</span></div>
@@ -523,19 +461,11 @@
 <!-- INFO STRIP -->
 <div class="info-strip">
   <div class="container">
-    <div class="row g-3">
-      <div class="col-12 col-sm-6 col-md-3">
-        <div class="info-item"><i class="fas fa-clock"></i><span>Sunday Service: 8AM &amp; 10:30AM</span></div>
-      </div>
-      <div class="col-12 col-sm-6 col-md-3">
-        <div class="info-item"><i class="fas fa-map-marker-alt"></i><span>123 Olive Branch Avenue, Kigali</span></div>
-      </div>
-      <div class="col-12 col-sm-6 col-md-3">
-        <div class="info-item"><i class="fas fa-phone"></i><span>+250 788 000 123</span></div>
-      </div>
-      <div class="col-12 col-sm-6 col-md-3">
-        <div class="info-item"><i class="fas fa-wifi"></i><span>Watch Live Online</span></div>
-      </div>
+    <div class="row g-2">
+      <div class="col-12 col-sm-6 col-lg-3"><div class="info-item"><i class="fas fa-clock"></i><span>Sunday Service: 8AM &amp; 10:30AM</span></div></div>
+      <div class="col-12 col-sm-6 col-lg-3"><div class="info-item"><i class="fas fa-map-marker-alt"></i><span>123 Olive Branch Ave, Kigali</span></div></div>
+      <div class="col-12 col-sm-6 col-lg-3"><div class="info-item"><i class="fas fa-phone"></i><span>+250 788 000 123</span></div></div>
+      <div class="col-12 col-sm-6 col-lg-3"><div class="info-item"><i class="fas fa-wifi"></i><span>Watch Live Online</span></div></div>
     </div>
   </div>
 </div>
@@ -545,8 +475,8 @@
   <div class="container">
     <div class="row align-items-center g-5">
       <div class="col-lg-5 fade-up">
-        <div class="about-img-wrap pe-4">
-          <img src="https://images.unsplash.com/photo-1438032005730-c779502df39b?w=700&q=80" alt="Church interior"/>
+        <div class="about-img-wrap pe-lg-3">
+          <img src="https://images.unsplash.com/photo-1438032005730-c779502df39b?w=700&q=80" alt="Church interior" loading="lazy"/>
           <div class="about-badge">
             <span class="num">35+</span>
             <span class="lbl">Years of<br>Ministry</span>
@@ -554,42 +484,18 @@
         </div>
       </div>
       <div class="col-lg-7 fade-up">
-        <span class="section-label"><i class="fas fa-heart me-2"></i>About Our Church</span>
+        <div class="section-label"><i class="fas fa-heart"></i>About Our Church</div>
         <h2 class="section-title">A Community Built on God's Word</h2>
         <div class="divider-gold"></div>
-        <p class="mb-3" style="color:var(--text-muted-custom);line-height:1.85;">
-          Olives Fellowship Temple has been serving the Kigali community for over 35 years. We are a diverse, welcoming congregation committed to spreading the love of Christ through worship, fellowship, and outreach.
-        </p>
-        <p class="mb-4" style="color:var(--text-muted-custom);line-height:1.85;">
-          Our mission is simple: to know God, grow in faith, and make a difference in the lives of others. Whether you're a lifelong believer or exploring faith for the first time, you are welcome here.
-        </p>
+        <p class="mb-3" style="color:var(--text-muted);line-height:1.9;font-size:.93rem;">Olives Fellowship Temple has been serving the Kigali community for over 35 years. We are a diverse, welcoming congregation committed to spreading the love of Christ through worship, fellowship, and outreach.</p>
+        <p class="mb-4" style="color:var(--text-muted);line-height:1.9;font-size:.93rem;">Our mission is simple: to know God, grow in faith, and make a difference in the lives of others. Whether you're a lifelong believer or exploring faith for the first time, you are welcome here.</p>
         <div class="row g-3 mb-4">
-          <div class="col-6">
-            <div class="value-item mb-0">
-              <div class="value-icon"><i class="fas fa-bible"></i></div>
-              <span style="font-size:.9rem;color:var(--text-muted-custom);align-self:center">Spirit-filled Worship</span>
-            </div>
-          </div>
-          <div class="col-6">
-            <div class="value-item mb-0">
-              <div class="value-icon"><i class="fas fa-graduation-cap"></i></div>
-              <span style="font-size:.9rem;color:var(--text-muted-custom);align-self:center">Biblical Teaching</span>
-            </div>
-          </div>
-          <div class="col-6">
-            <div class="value-item mb-0">
-              <div class="value-icon"><i class="fas fa-globe-africa"></i></div>
-              <span style="font-size:.9rem;color:var(--text-muted-custom);align-self:center">Community Outreach</span>
-            </div>
-          </div>
-          <div class="col-6">
-            <div class="value-item mb-0">
-              <div class="value-icon"><i class="fas fa-home"></i></div>
-              <span style="font-size:.9rem;color:var(--text-muted-custom);align-self:center">Family Ministries</span>
-            </div>
-          </div>
+          <div class="col-6"><div class="value-item"><div class="value-icon"><i class="fas fa-bible"></i></div><span style="font-size:.87rem;color:var(--text-muted);align-self:center">Spirit-filled Worship</span></div></div>
+          <div class="col-6"><div class="value-item"><div class="value-icon"><i class="fas fa-graduation-cap"></i></div><span style="font-size:.87rem;color:var(--text-muted);align-self:center">Biblical Teaching</span></div></div>
+          <div class="col-6"><div class="value-item"><div class="value-icon"><i class="fas fa-globe-africa"></i></div><span style="font-size:.87rem;color:var(--text-muted);align-self:center">Community Outreach</span></div></div>
+          <div class="col-6"><div class="value-item"><div class="value-icon"><i class="fas fa-home"></i></div><span style="font-size:.87rem;color:var(--text-muted);align-self:center">Family Ministries</span></div></div>
         </div>
-        <a href="#services" class="btn-gold">Explore Our Services</a>
+        <a href="#services" class="btn-gold"><i class="fas fa-arrow-right"></i>Explore Our Services</a>
       </div>
     </div>
   </div>
@@ -599,18 +505,10 @@
 <section class="stats-section">
   <div class="container">
     <div class="row g-4 text-center">
-      <div class="col-6 col-md-3 fade-up">
-        <div class="stat-item"><span class="stat-num" data-target="2400">0</span><span class="stat-lbl">Active Members</span></div>
-      </div>
-      <div class="col-6 col-md-3 fade-up">
-        <div class="stat-item"><span class="stat-num" data-target="35">0</span><span class="stat-lbl">Years of Ministry</span></div>
-      </div>
-      <div class="col-6 col-md-3 fade-up">
-        <div class="stat-item"><span class="stat-num" data-target="12">0</span><span class="stat-lbl">Ministries &amp; Groups</span></div>
-      </div>
-      <div class="col-6 col-md-3 fade-up">
-        <div class="stat-item"><span class="stat-num" data-target="500">0</span><span class="stat-lbl">Families Served Weekly</span></div>
-      </div>
+      <div class="col-6 col-md-3 fade-up"><div class="stat-item"><span class="stat-num" data-target="2400">0</span><span class="stat-lbl">Active Members</span></div></div>
+      <div class="col-6 col-md-3 fade-up"><div class="stat-item"><span class="stat-num" data-target="35">0</span><span class="stat-lbl">Years of Ministry</span></div></div>
+      <div class="col-6 col-md-3 fade-up"><div class="stat-item"><span class="stat-num" data-target="12">0</span><span class="stat-lbl">Ministries &amp; Groups</span></div></div>
+      <div class="col-6 col-md-3 fade-up"><div class="stat-item"><span class="stat-num" data-target="500">0</span><span class="stat-lbl">Families Served Weekly</span></div></div>
     </div>
   </div>
 </section>
@@ -618,11 +516,11 @@
 <!-- SERVICES -->
 <section class="services-section" id="services">
   <div class="container">
-    <div class="text-center fade-up">
-      <span class="section-label"><i class="fas fa-church me-2"></i>What We Offer</span>
+    <div class="text-center fade-up mb-5">
+      <div class="section-label justify-content-center"><i class="fas fa-church"></i>What We Offer</div>
       <h2 class="section-title">Our Church Services</h2>
       <div class="divider-gold center"></div>
-      <p class="mb-5" style="color:var(--text-muted-custom);max-width:550px;margin:0 auto 3rem;font-size:.95rem;">We offer a wide range of services designed to strengthen your faith and connect you with God and community.</p>
+      <p style="color:var(--text-muted);max-width:520px;margin:0 auto;font-size:.92rem;">We offer a wide range of services designed to strengthen your faith and connect you with God and community.</p>
     </div>
     <div class="row g-4" id="servicesGrid"></div>
   </div>
@@ -631,27 +529,27 @@
 <!-- SCHEDULE -->
 <section class="schedule-section" id="schedule">
   <div class="container">
-    <div class="text-center fade-up">
-      <span class="section-label" style="color:var(--gold-light)"><i class="fas fa-clock me-2"></i>Weekly Programme</span>
+    <div class="text-center fade-up mb-5">
+      <div class="section-label justify-content-center" style="color:var(--gold-light)"><i class="fas fa-clock"></i>Weekly Programme</div>
       <h2 class="section-title light">Service Schedule</h2>
       <div class="divider-gold center"></div>
     </div>
-    <div class="row" id="scheduleGrid"></div>
+    <div class="row g-3" id="scheduleGrid"></div>
   </div>
 </section>
 
-<!-- MINISTRIES / GROUPS -->
+<!-- MINISTRIES -->
 <section class="ministries-section" id="ministries">
   <div class="container">
     <div class="row mb-5 align-items-end">
-      <div class="col-lg-6 fade-up">
-        <span class="section-label"><i class="fas fa-users me-2"></i>Get Involved</span>
+      <div class="col-lg-7 fade-up">
+        <div class="section-label"><i class="fas fa-users"></i>Get Involved</div>
         <h2 class="section-title">Our Ministries &amp; Groups</h2>
         <div class="divider-gold"></div>
-        <p style="color:var(--text-muted-custom);font-size:.93rem;">Each group has its own chat room for announcements and fellowship. Group leaders can create new rooms.</p>
+        <p style="color:var(--text-muted);font-size:.9rem;">Each group has its own chat room for announcements and fellowship. Group leaders can create new rooms.</p>
       </div>
-      <div class="col-lg-6 text-lg-end fade-up mt-3 mt-lg-0">
-        <button class="btn-gold" onclick="openGroupChatAsLeader()"><i class="fas fa-plus me-2"></i>Create New Room (Leader)</button>
+      <div class="col-lg-5 text-lg-end fade-up mt-3 mt-lg-0">
+        <button class="btn-gold" onclick="openGroupChatAsLeader()"><i class="fas fa-plus"></i>Create New Room</button>
       </div>
     </div>
     <div class="row g-4" id="groupsGrid"></div>
@@ -663,30 +561,21 @@
   <div class="container">
     <div class="row g-5">
       <div class="col-lg-6 fade-up">
-        <span class="section-label"><i class="fas fa-calendar me-2"></i>Upcoming Events</span>
+        <div class="section-label"><i class="fas fa-calendar"></i>Upcoming Events</div>
         <h2 class="section-title">What's Happening</h2>
         <div class="divider-gold"></div>
         <div id="eventsGrid"></div>
       </div>
       <div class="col-lg-6 fade-up">
-        <span class="section-label">Stay Connected</span>
-        <h2 class="section-title">Register for an Event</h2>
+        <div class="section-label">Register</div>
+        <h2 class="section-title">Join an Event</h2>
         <div class="divider-gold"></div>
-        <div style="background:#fff;padding:2rem;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,.07);">
-          <div class="mb-3">
-            <label class="form-label" style="font-size:.85rem;font-weight:700;color:var(--dark-brown);">Full Name</label>
-            <input type="text" class="form-control" placeholder="Your full name"/>
-          </div>
-          <div class="mb-3">
-            <label class="form-label" style="font-size:.85rem;font-weight:700;color:var(--dark-brown);">Email Address</label>
-            <input type="email" class="form-control" placeholder="your@email.com"/>
-          </div>
-          <div class="mb-3">
-            <label class="form-label" style="font-size:.85rem;font-weight:700;color:var(--dark-brown);">Phone Number</label>
-            <input type="tel" class="form-control" placeholder="+250 7XX XXX XXX"/>
-          </div>
+        <div style="background:#fff;padding:2rem;border-radius:var(--radius);box-shadow:var(--shadow-sm);border:1px solid rgba(0,0,0,0.05);">
+          <div class="mb-3"><label class="form-label">Full Name</label><input type="text" class="form-control" placeholder="Your full name"/></div>
+          <div class="mb-3"><label class="form-label">Email Address</label><input type="email" class="form-control" placeholder="your@email.com"/></div>
+          <div class="mb-3"><label class="form-label">Phone Number</label><input type="tel" class="form-control" placeholder="+250 7XX XXX XXX"/></div>
           <div class="mb-4">
-            <label class="form-label" style="font-size:.85rem;font-weight:700;color:var(--dark-brown);">Select Event</label>
+            <label class="form-label">Select Event</label>
             <select class="form-select">
               <option>Annual Worship Night – Jun 1</option>
               <option>Marriage Enrichment Retreat – Jun 8</option>
@@ -694,7 +583,7 @@
               <option>Youth Conference 2026 – Jun 22</option>
             </select>
           </div>
-          <button class="btn-gold w-100 text-center" style="padding:.9rem;" onclick="showToast('✅ Registration submitted! We will be in touch.')">Register Now</button>
+          <button class="btn-gold w-100 justify-content-center" onclick="showToast('✅ Registration submitted! We will be in touch.')"><i class="fas fa-check-circle"></i>Register Now</button>
         </div>
       </div>
     </div>
@@ -704,21 +593,21 @@
 <!-- GIVE -->
 <section class="give-section" id="give">
   <div class="container position-relative" style="z-index:1">
-    <div class="text-center fade-up">
-      <span class="section-label" style="color:var(--gold-light)"><i class="fas fa-hand-holding-heart me-2"></i>Sow a Seed</span>
+    <div class="text-center fade-up mb-5">
+      <div class="section-label justify-content-center" style="color:var(--gold-light)"><i class="fas fa-hand-holding-heart"></i>Sow a Seed</div>
       <h2 class="section-title light">Give to God's Work</h2>
       <div class="divider-gold center"></div>
-      <p class="mb-5" style="color:rgba(255,255,255,.65);max-width:520px;margin:0 auto 3rem;font-size:.95rem;">Your generous giving helps us advance the Kingdom, support our community programs, and sustain the ministry. Every gift makes a difference.</p>
+      <p style="color:rgba(255,255,255,0.6);max-width:500px;margin:0 auto;font-size:.9rem;">Your generous giving helps us advance the Kingdom, support our community programs, and sustain the ministry.</p>
     </div>
     <div class="row g-4 justify-content-center" id="giveGrid"></div>
   </div>
 </section>
 
 <!-- TESTIMONIALS -->
-<section class="testimonials-section" id="testimonials">
+<section class="testimonials-section">
   <div class="container">
-    <div class="text-center fade-up">
-      <span class="section-label">Stories of Faith</span>
+    <div class="text-center fade-up mb-5">
+      <div class="section-label justify-content-center">Stories of Faith</div>
       <h2 class="section-title">What Our Members Say</h2>
       <div class="divider-gold center"></div>
     </div>
@@ -726,7 +615,7 @@
       <div class="col-md-6 col-lg-4 fade-up">
         <div class="testimonial-card">
           <p>Olives Fellowship Temple changed my life completely. The Bible study and cell groups helped me grow deeper in my faith than I ever imagined possible.</p>
-          <div class="testimonial-author">
+          <div class="d-flex align-items-center gap-3 mt-3">
             <div class="author-avatar">AM</div>
             <div><div class="author-name">Amina Mutoni</div><div class="author-role">Member since 2018</div></div>
           </div>
@@ -735,7 +624,7 @@
       <div class="col-md-6 col-lg-4 fade-up">
         <div class="testimonial-card">
           <p>The marriage ministry saved our relationship. The pastors and counsellors provided guidance rooted in Scripture with genuine love and care.</p>
-          <div class="testimonial-author">
+          <div class="d-flex align-items-center gap-3 mt-3">
             <div class="author-avatar">JN</div>
             <div><div class="author-name">Jean &amp; Nadia</div><div class="author-role">Married Couple</div></div>
           </div>
@@ -744,7 +633,7 @@
       <div class="col-md-6 col-lg-4 fade-up">
         <div class="testimonial-card">
           <p>As a young adult, finding a church that invests in our generation was a blessing. The youth programs are world-class and truly transformative.</p>
-          <div class="testimonial-author">
+          <div class="d-flex align-items-center gap-3 mt-3">
             <div class="author-avatar">EK</div>
             <div><div class="author-name">Eric Kamanzi</div><div class="author-role">Youth Member</div></div>
           </div>
@@ -757,77 +646,50 @@
 <!-- CONTACT -->
 <section class="contact-section" id="contact">
   <div class="container">
-    <div class="text-center fade-up">
-      <span class="section-label"><i class="fas fa-envelope me-2"></i>We'd Love to Hear From You</span>
+    <div class="text-center fade-up mb-5">
+      <div class="section-label justify-content-center"><i class="fas fa-envelope"></i>We'd Love to Hear From You</div>
       <h2 class="section-title">Get in Touch</h2>
       <div class="divider-gold center"></div>
     </div>
-    <div class="row g-4">
-      <div class="col-md-6 col-lg-3 fade-up">
-        <div class="contact-card text-center">
-          <i class="fas fa-map-marker-alt"></i>
-          <h6>Our Location</h6>
-          <p>123 Olive Branch Avenue<br>Nyarugenge, Kigali<br>Rwanda</p>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-3 fade-up">
-        <div class="contact-card text-center">
-          <i class="fas fa-phone-alt"></i>
-          <h6>Phone Numbers</h6>
-          <p>+250 788 000 123<br>+250 722 000 456<br>Office: Mon–Fri, 9AM–5PM</p>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-3 fade-up">
-        <div class="contact-card text-center">
-          <i class="fas fa-envelope"></i>
-          <h6>Email Us</h6>
-          <p>info@olivesfellowship.rw<br>pastor@olivesfellowship.rw<br>events@olivesfellowship.rw</p>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-3 fade-up">
-        <div class="contact-card text-center">
-          <i class="fas fa-clock"></i>
-          <h6>Office Hours</h6>
-          <p>Monday – Friday<br>9:00 AM – 5:00 PM<br>Saturday: 10AM – 2PM</p>
-        </div>
-      </div>
+    <div class="row g-4 mb-5">
+      <div class="col-6 col-lg-3 fade-up"><div class="contact-card"><i class="fas fa-map-marker-alt"></i><h6>Location</h6><p>123 Olive Branch Avenue<br>Nyarugenge, Kigali, Rwanda</p></div></div>
+      <div class="col-6 col-lg-3 fade-up"><div class="contact-card"><i class="fas fa-phone-alt"></i><h6>Phone</h6><p>+250 788 000 123<br>+250 722 000 456</p></div></div>
+      <div class="col-6 col-lg-3 fade-up"><div class="contact-card"><i class="fas fa-envelope"></i><h6>Email</h6><p>info@olivesfellowship.rw<br>pastor@olivesfellowship.rw</p></div></div>
+      <div class="col-6 col-lg-3 fade-up"><div class="contact-card"><i class="fas fa-clock"></i><h6>Office Hours</h6><p>Mon–Fri: 9AM–5PM<br>Saturday: 10AM–2PM</p></div></div>
     </div>
-    <div class="row g-5 mt-4">
+    <div class="row g-5">
       <div class="col-lg-7 fade-up">
-        <h4 style="font-family:'Playfair Display',serif;margin-bottom:1.5rem;color:var(--dark-brown);">Send us a Message</h4>
+        <h4 class="font-display mb-4" style="color:var(--text-body);font-size:1.6rem;font-weight:700;">Send us a Message</h4>
         <div class="row g-3">
-          <div class="col-md-6"><input type="text" class="form-control" placeholder="Your Name"/></div>
-          <div class="col-md-6"><input type="email" class="form-control" placeholder="Email Address"/></div>
-          <div class="col-md-6"><input type="tel" class="form-control" placeholder="Phone Number"/></div>
-          <div class="col-md-6">
+          <div class="col-sm-6"><input type="text" class="form-control" placeholder="Your Name"/></div>
+          <div class="col-sm-6"><input type="email" class="form-control" placeholder="Email Address"/></div>
+          <div class="col-sm-6"><input type="tel" class="form-control" placeholder="Phone Number"/></div>
+          <div class="col-sm-6">
             <select class="form-select">
               <option selected disabled>Select Subject</option>
-              <option>General Inquiry</option>
-              <option>Membership</option>
-              <option>Prayer Request</option>
-              <option>Counseling</option>
-              <option>Event Booking</option>
+              <option>General Inquiry</option><option>Membership</option><option>Prayer Request</option>
+              <option>Counseling</option><option>Event Booking</option>
             </select>
           </div>
-          <div class="col-12"><textarea class="form-control" rows="5" placeholder="Your message..."></textarea></div>
-          <div class="col-12"><button class="btn-gold" onclick="showToast('📨 Message sent! We\'ll respond within 24 hours.')"><i class="fas fa-paper-plane me-2"></i>Send Message</button></div>
+          <div class="col-12"><textarea class="form-control" rows="4" placeholder="Your message..."></textarea></div>
+          <div class="col-12"><button class="btn-gold" onclick="showToast('📨 Message sent! We\'ll respond within 24 hours.')"><i class="fas fa-paper-plane"></i>Send Message</button></div>
         </div>
       </div>
       <div class="col-lg-5 fade-up">
-        <h4 style="font-family:'Playfair Display',serif;margin-bottom:1.5rem;color:var(--dark-brown);">Find Us on the Map</h4>
-        <div style="background:var(--cream);height:290px;border-radius:12px;display:flex;align-items:center;justify-content:center;border:2px dashed var(--gold);flex-direction:column;gap:.7rem;">
+        <h4 class="font-display mb-4" style="color:var(--text-body);font-size:1.6rem;font-weight:700;">Find Us</h4>
+        <div style="background:var(--cream);height:280px;border-radius:var(--radius);display:flex;align-items:center;justify-content:center;border:2px dashed rgba(201,168,76,0.4);flex-direction:column;gap:0.7rem;">
           <i class="fas fa-map-marker-alt" style="font-size:2.5rem;color:var(--gold);"></i>
-          <p style="color:var(--text-muted-custom);font-size:.9rem;text-align:center;margin:0;padding:0 1rem;">123 Olive Branch Avenue, Nyarugenge<br>Kigali, Rwanda</p>
-          <a href="https://maps.google.com" target="_blank" class="btn-gold" style="font-size:.82rem;padding:.5rem 1.4rem;">Open in Google Maps</a>
+          <p style="color:var(--text-muted);font-size:0.88rem;text-align:center;margin:0;padding:0 1rem;">123 Olive Branch Avenue, Nyarugenge<br>Kigali, Rwanda</p>
+          <a href="https://maps.google.com" target="_blank" class="btn-gold" style="font-size:0.78rem;padding:0.5rem 1.4rem;"><i class="fas fa-external-link-alt"></i>Open in Google Maps</a>
         </div>
         <div class="mt-4">
-          <h6 style="font-family:'Playfair Display',serif;color:var(--dark-brown);margin-bottom:1rem;">Follow Us</h6>
-          <div class="social-icons">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-youtube"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-whatsapp"></i></a>
+          <h6 class="font-display mb-3" style="color:var(--text-body);font-size:1rem;font-weight:700;">Follow Us</h6>
+          <div>
+            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
           </div>
         </div>
       </div>
@@ -841,12 +703,12 @@
     <div class="row align-items-center g-4">
       <div class="col-lg-5">
         <h3>Stay Updated</h3>
-        <p>Subscribe to receive our weekly sermons, devotionals, and event updates.</p>
+        <p>Subscribe to receive sermons, devotionals, and event updates weekly.</p>
       </div>
       <div class="col-lg-7">
-        <div class="input-group">
-          <input type="email" class="form-control" placeholder="Enter your email address" style="padding:.85rem 1rem;border-radius:30px 0 0 30px;"/>
-          <button class="btn-sub" onclick="showToast('🙏 Thank you for subscribing!')">Subscribe</button>
+        <div class="nl-input-group">
+          <input type="email" class="nl-input" placeholder="Enter your email address"/>
+          <button class="nl-btn" onclick="showToast('🙏 Thank you for subscribing!')">Subscribe</button>
         </div>
       </div>
     </div>
@@ -858,45 +720,38 @@
   <div class="container">
     <div class="row g-4">
       <div class="col-lg-4 col-md-6">
-        <h4 style="font-family:'Playfair Display',serif;color:var(--gold);font-size:1.5rem;margin-bottom:1rem;">✝ Olives Fellowship Temple</h4>
-        <p style="font-size:.88rem;line-height:1.8;margin-bottom:1.5rem;">A community of faith, hope, and love. We exist to glorify God and make disciples who transform the world.</p>
-        <div class="social-icons">
-          <a href="#"><i class="fab fa-facebook-f"></i></a>
-          <a href="#"><i class="fab fa-youtube"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-whatsapp"></i></a>
+        <h4 style="font-family:'Cormorant Garamond',serif;color:var(--gold);font-size:1.6rem;margin-bottom:1rem;font-weight:700;">✝ Olives Fellowship Temple</h4>
+        <p style="font-size:0.86rem;line-height:1.85;margin-bottom:1.5rem;color:rgba(255,255,255,0.55);">A community of faith, hope, and love. We exist to glorify God and make disciples who transform the world.</p>
+        <div>
+          <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
         </div>
       </div>
-      <div class="col-lg-2 col-md-6 col-sm-6">
+      <div class="col-lg-2 col-6">
         <h5>Quick Links</h5>
-        <a href="#home">Home</a>
-        <a href="#about">About Us</a>
-        <a href="#services">Services</a>
-        <a href="#schedule">Schedule</a>
-        <a href="#ministries">Ministries</a>
-        <a href="#events">Events</a>
+        <a href="#home">Home</a><a href="#about">About Us</a><a href="#services">Services</a>
+        <a href="#schedule">Schedule</a><a href="#ministries">Ministries</a><a href="#events">Events</a>
       </div>
-      <div class="col-lg-2 col-md-6 col-sm-6">
+      <div class="col-lg-2 col-6">
         <h5>Services</h5>
-        <a href="#services">Sunday Worship</a>
-        <a href="#services">Bible Study</a>
-        <a href="#services">Prayer Meeting</a>
-        <a href="#services">Youth Ministry</a>
-        <a href="#services">Children's Church</a>
-        <a href="#services">Online Service</a>
+        <a href="#services">Sunday Worship</a><a href="#services">Bible Study</a>
+        <a href="#services">Prayer Meeting</a><a href="#services">Youth Ministry</a>
+        <a href="#services">Children's Church</a><a href="#services">Online Service</a>
       </div>
       <div class="col-lg-4 col-md-6">
         <h5>Latest Sermon</h5>
-        <div style="background:rgba(255,255,255,.05);border-radius:10px;padding:1.2rem;border-left:3px solid var(--gold);">
-          <p style="font-size:.82rem;color:rgba(255,255,255,.5);margin-bottom:.3rem;text-transform:uppercase;letter-spacing:.1em;">Latest Message</p>
-          <p style="font-family:'Playfair Display',serif;color:#fff;margin-bottom:.4rem;font-size:1rem;">"Walking in the Spirit Daily"</p>
-          <p style="font-size:.82rem;color:rgba(255,255,255,.5);margin-bottom:.8rem;">Pastor David Nkurunziza · May 18, 2026</p>
-          <a href="#" class="btn-outline-gold" style="font-size:.78rem;padding:.4rem 1rem;border-color:rgba(201,168,76,.4);color:var(--gold);">Watch Now</a>
+        <div style="background:rgba(255,255,255,0.05);border-radius:10px;padding:1.2rem;border-left:3px solid var(--gold);">
+          <p style="font-size:0.72rem;color:rgba(255,255,255,0.4);margin-bottom:0.3rem;text-transform:uppercase;letter-spacing:0.12em;">Latest Message</p>
+          <p style="font-family:'Cormorant Garamond',serif;color:#fff;margin-bottom:0.3rem;font-size:1rem;font-weight:700;">"Walking in the Spirit Daily"</p>
+          <p style="font-size:0.78rem;color:rgba(255,255,255,0.45);margin-bottom:0.9rem;">Pastor David Nkurunziza · May 18, 2026</p>
+          <a href="#" class="btn-outline-ghost" style="font-size:0.76rem;padding:0.4rem 1.2rem;border-color:rgba(201,168,76,0.35);color:var(--gold);"><i class="fas fa-play me-1"></i>Watch Now</a>
         </div>
       </div>
     </div>
-    <div class="footer-bottom text-center">
+    <div class="footer-divider text-center">
       <p>&copy; 2026 Olives Fellowship Temple, Kigali — All Rights Reserved. Built with ❤ for God's Glory.</p>
     </div>
   </div>
@@ -909,28 +764,30 @@
 
 <!-- AI CHATBOT BUTTON -->
 <button id="aiBotBtn" onclick="toggleBot()" title="Chat with our AI Assistant">
+  <div class="bot-pulse"></div>
   <i class="fas fa-robot" id="botBtnIcon"></i>
 </button>
 
 <!-- AI CHATBOT WINDOW -->
 <div id="aiBotWindow">
   <div class="bot-header">
-    <div class="bot-avatar">✝</div>
+    <div class="bot-avatar-icon">✝</div>
     <div class="bot-header-info">
       <h6>Olives AI Assistant</h6>
-      <small><span class="bot-online"></span>Online · Ask me anything</small>
+      <small><span class="bot-online-dot"></span>Online · Ask about church or the Bible</small>
     </div>
     <button class="bot-close" onclick="toggleBot()"><i class="fas fa-times"></i></button>
   </div>
   <div class="bot-body" id="botBody"></div>
   <div class="bot-quick-btns" id="botQuickBtns">
     <button class="bot-quick-btn" onclick="sendQuick('Service times?')">⏰ Service Times</button>
-    <button class="bot-quick-btn" onclick="sendQuick('How can I join?')">🙏 How to Join</button>
+    <button class="bot-quick-btn" onclick="sendQuick('What does the Bible say about prayer?')">📖 Bible & Prayer</button>
     <button class="bot-quick-btn" onclick="sendQuick('Upcoming events?')">📅 Events</button>
+    <button class="bot-quick-btn" onclick="sendQuick('What does John 3:16 mean?')">✝ John 3:16</button>
     <button class="bot-quick-btn" onclick="sendQuick('How can I give?')">💛 Giving</button>
   </div>
   <div class="bot-footer">
-    <input type="text" class="bot-input" id="botInput" placeholder="Ask about our church..." onkeydown="if(event.key==='Enter')sendBotMsg()"/>
+    <input type="text" class="bot-input" id="botInput" placeholder="Ask about church or the Bible…" onkeydown="if(event.key==='Enter')sendBotMsg()"/>
     <button class="bot-send" onclick="sendBotMsg()"><i class="fas fa-paper-plane"></i></button>
   </div>
 </div>
@@ -938,32 +795,28 @@
 <!-- PRAYER MODAL -->
 <div class="modal fade" id="prayerModal" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content" style="border-radius:16px;overflow:hidden;border:none">
-      <div class="modal-header border-0" style="background:linear-gradient(135deg,var(--deep),var(--navy2))">
-        <h5 class="modal-title" style="color:#fff;font-family:'Playfair Display',serif"><i class="fas fa-hands-praying me-2" style="color:var(--gold)"></i>Submit a Prayer Request</h5>
+    <div class="modal-content">
+      <div class="modal-header-custom d-flex align-items-center justify-content-between">
+        <h5><i class="fas fa-hands-praying me-2" style="color:var(--gold)"></i>Submit a Prayer Request</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body p-4">
-        <p class="text-muted mb-4" style="font-size:.9rem">Share your prayer needs with our prayer team. We believe in the power of united prayer.</p>
+        <p style="color:var(--text-muted);font-size:0.88rem;margin-bottom:1.5rem;">Share your prayer needs with our prayer team. We believe in the power of united prayer.</p>
         <div class="mb-3"><input type="text" class="form-control" placeholder="Your Name (optional)"></div>
         <div class="mb-3">
           <select class="form-select">
             <option selected disabled>Prayer Category</option>
-            <option>Health &amp; Healing</option>
-            <option>Family</option>
-            <option>Finance</option>
-            <option>Career &amp; Education</option>
-            <option>Salvation</option>
-            <option>Other</option>
+            <option>Health &amp; Healing</option><option>Family</option><option>Finance</option>
+            <option>Career &amp; Education</option><option>Salvation</option><option>Other</option>
           </select>
         </div>
         <div class="mb-3"><textarea class="form-control" rows="4" placeholder="Describe your prayer request..."></textarea></div>
         <div class="form-check mb-4">
           <input class="form-check-input" type="checkbox" id="privateCheck" checked>
-          <label class="form-check-label text-muted" for="privateCheck" style="font-size:.88rem">Keep this request private (only pastors will see it)</label>
+          <label class="form-check-label" for="privateCheck" style="font-size:0.85rem;color:var(--text-muted);">Keep this request private (only pastors will see it)</label>
         </div>
-        <button class="btn-gold w-100" style="padding:13px" data-bs-dismiss="modal" onclick="showToast('🙏 Your prayer request has been submitted. Our team will pray for you!')">
-          <i class="fas fa-paper-plane me-2"></i>Submit Request
+        <button class="btn-gold w-100 justify-content-center" data-bs-dismiss="modal" onclick="showToast('🙏 Your prayer request has been submitted. Our team will pray for you!')">
+          <i class="fas fa-paper-plane"></i>Submit Request
         </button>
       </div>
     </div>
@@ -974,8 +827,8 @@
 <div class="modal fade chat-modal" id="chatModal" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
-      <div class="chat-header">
-        <div class="chat-avatar" id="chatAvatar">🎵</div>
+      <div class="chat-header-bar">
+        <div class="chat-avatar-lg" id="chatAvatar">🎵</div>
         <div class="chat-header-info flex-grow-1">
           <h5 id="chatGroupName">Choir Ministry</h5>
           <small id="chatGroupSub">24 members · Active now</small>
@@ -983,12 +836,12 @@
         <span class="role-badge role-member me-3" id="myRoleBadge">Member</span>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
       </div>
-      <div class="rooms-list" id="roomsList"></div>
-      <div class="chat-body" id="chatBody"></div>
-      <div class="chat-footer">
-        <div class="chat-actions" id="chatActionsBar"></div>
-        <div class="chat-input-wrap">
-          <button style="background:transparent;border:none;color:var(--text-muted-custom);font-size:1rem;cursor:pointer" title="Attach"><i class="fas fa-paperclip"></i></button>
+      <div class="rooms-bar" id="roomsList"></div>
+      <div class="chat-body-area" id="chatBody"></div>
+      <div class="chat-footer-area">
+        <div class="chat-actions-bar" id="chatActionsBar"></div>
+        <div class="chat-input-row">
+          <button style="background:transparent;border:none;color:var(--text-muted);font-size:1rem;cursor:pointer;" title="Attach"><i class="fas fa-paperclip"></i></button>
           <input type="text" class="chat-input" id="chatInput" placeholder="Type a message..." onkeydown="if(event.key==='Enter')sendChatMsg()">
           <button class="btn-send" onclick="sendChatMsg()"><i class="fas fa-paper-plane"></i></button>
         </div>
@@ -1000,24 +853,24 @@
 <!-- NEW ROOM MODAL -->
 <div class="modal fade" id="newRoomModal" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content" style="border-radius:16px;overflow:hidden;border:none">
-      <div class="modal-header border-0" style="background:var(--deep)">
-        <h5 class="modal-title" style="color:#fff;font-family:'Playfair Display',serif"><i class="fas fa-plus-circle me-2" style="color:var(--gold)"></i>Create New Chat Room</h5>
+    <div class="modal-content">
+      <div class="modal-header-custom d-flex align-items-center justify-content-between">
+        <h5><i class="fas fa-plus-circle me-2" style="color:var(--gold)"></i>Create New Chat Room</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body p-4">
-        <div class="mb-3"><label class="form-label fw-bold" style="font-size:.9rem">Room Name</label><input type="text" class="form-control" id="newRoomName" placeholder="e.g. Rehearsal Schedule, Announcements..."></div>
-        <div class="mb-4"><label class="form-label fw-bold" style="font-size:.9rem">Purpose</label><textarea class="form-control" id="newRoomPurpose" rows="2" placeholder="What is this room for?"></textarea></div>
-        <button class="btn-gold w-100" style="padding:12px" onclick="createNewRoom()"><i class="fas fa-plus me-2"></i>Create Room</button>
+        <div class="mb-3"><label class="form-label">Room Name</label><input type="text" class="form-control" id="newRoomName" placeholder="e.g. Rehearsal Schedule, Announcements..."></div>
+        <div class="mb-4"><label class="form-label">Purpose</label><textarea class="form-control" id="newRoomPurpose" rows="2" placeholder="What is this room for?"></textarea></div>
+        <button class="btn-gold w-100 justify-content-center" onclick="createNewRoom()"><i class="fas fa-plus"></i>Create Room</button>
       </div>
     </div>
   </div>
 </div>
 
 <!-- TOAST -->
-<div style="position:fixed;bottom:7rem;left:50%;transform:translateX(-50%);z-index:9999;min-width:280px;max-width:400px" id="toastWrap">
-  <div id="mainToast" class="toast align-items-center border-0 text-white" role="alert" style="background:var(--deep);border-radius:12px;border-left:4px solid var(--gold) !important">
-    <div class="d-flex"><div class="toast-body" id="toastMsg" style="font-size:.9rem"></div><button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button></div>
+<div id="toastWrap">
+  <div id="mainToast" class="toast align-items-center border-0" role="alert">
+    <div class="d-flex"><div class="toast-body" id="toastMsg"></div><button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button></div>
   </div>
 </div>
 
@@ -1028,31 +881,31 @@ const SERVICES = [
   { icon:'fas fa-pray', title:'Sunday Worship', desc:'Vibrant, spirit-filled Sunday worship services for all ages featuring praise, prayer, and powerful preaching of God\'s Word.', time:'Sundays · 8:00 AM & 10:30 AM' },
   { icon:'fas fa-book-open', title:'Bible Study', desc:'In-depth weekly Bible study sessions exploring Scripture in community. Open to all believers seeking deeper knowledge of the Word.', time:'Wednesdays · 6:30 PM' },
   { icon:'fas fa-hands-praying', title:'Prayer Meetings', desc:'Corporate prayer gatherings where we intercede for our church, nation, and world, believing in the power of united prayer.', time:'Fridays · 6:00 AM' },
-  { icon:'fas fa-child', title:'Children\'s Church', desc:'Fun, age-appropriate worship and teaching for children ages 3–12. We help kids discover their faith in a safe, joyful environment.', time:'Sundays · During Service' },
+  { icon:'fas fa-child', title:"Children's Church", desc:'Fun, age-appropriate worship and teaching for children ages 3–12. We help kids discover their faith in a safe, joyful environment.', time:'Sundays · During Service' },
   { icon:'fas fa-fire', title:'Youth Ministry', desc:'Empowering teens and young adults with faith-based programs, mentorship, and events designed for their unique life season.', time:'Saturdays · 4:00 PM' },
   { icon:'fas fa-users', title:'Cell Groups', desc:'Small group meetings in homes across the city where believers share life, study together, and support one another in faith.', time:'Thursdays · 7:00 PM' },
-  { icon:'fas fa-heart', title:'Marriage & Family', desc:'Counseling, workshops, and retreats for couples and families to build strong, Christ-centered relationships that stand the test of time.', time:'Monthly Saturdays' },
+  { icon:'fas fa-heart', title:'Marriage & Family', desc:'Counseling, workshops, and retreats for couples and families to build strong, Christ-centered relationships.', time:'Monthly Saturdays' },
   { icon:'fas fa-hands-helping', title:'Community Outreach', desc:'Feeding programs, hospital visits, and social support initiatives that express God\'s love to the vulnerable in our community.', time:'Every Last Saturday' },
-  { icon:'fas fa-desktop', title:'Online Services', desc:'Can\'t make it in person? Join our live-streamed services and access recorded sermons, devotionals, and teaching resources online.', time:'Live Every Sunday' },
+  { icon:'fas fa-desktop', title:'Online Services', desc:"Can't make it in person? Join our live-streamed services and access recorded sermons, devotionals, and teaching resources.", time:'Live Every Sunday' },
 ];
 
 const SCHEDULE_DATA = [
   { abbr:'SUN', title:'First Sunday Worship', desc:'Main Sanctuary · All are welcome', time:'8:00 AM' },
-  { abbr:'SUN', title:'Second Sunday Worship', desc:'Main Sanctuary · English & Kinyarwanda', time:'10:30 AM' },
-  { abbr:'MON', title:'Men\'s Fellowship', desc:'Hall B · Open to all men', time:'7:00 PM' },
-  { abbr:'TUE', title:'Women\'s Ministry', desc:'Fellowship Hall · All women welcome', time:'10:00 AM' },
+  { abbr:'SUN', title:'Second Sunday Worship', desc:'English & Kinyarwanda', time:'10:30 AM' },
+  { abbr:'MON', title:"Men's Fellowship", desc:'Hall B · Open to all men', time:'7:00 PM' },
+  { abbr:'TUE', title:"Women's Ministry", desc:'Fellowship Hall · All women welcome', time:'10:00 AM' },
   { abbr:'WED', title:'Midweek Bible Study', desc:'Main Sanctuary · Expository Teaching', time:'6:30 PM' },
   { abbr:'THU', title:'Cell Group Meetings', desc:'Various Homes · Small Groups', time:'7:00 PM' },
   { abbr:'FRI', title:'Early Morning Prayer', desc:'Prayer Room · Corporate Intercession', time:'6:00 AM' },
-  { abbr:'SAT', title:'Youth Service & Programs', desc:'Youth Hall · Ages 13–35', time:'4:00 PM' },
+  { abbr:'SAT', title:'Youth Service', desc:'Youth Hall · Ages 13–35', time:'4:00 PM' },
 ];
 
 const GROUPS = [
   { id:'choir', emoji:'🎵', name:'Choir Ministry', desc:'Spirit-filled worship team leading the congregation in praise and adoration every service.', members:48, color:'linear-gradient(135deg,#C9A84C,#E8C96A)', rooms:['General','Rehearsals','Announcements'] },
   { id:'youth', emoji:'⚡', name:'Youth Ministry', desc:'Empowering young people ages 13–35 to live boldly for Christ in a modern world.', members:120, color:'linear-gradient(135deg,#E65100,#FF6D00)', rooms:['General','Events','Prayer'] },
-  { id:'women', emoji:'🌸', name:'Women\'s Fellowship', desc:'A community of women growing together in faith, supporting one another through life\'s journey.', members:85, color:'linear-gradient(135deg,#AD1457,#E91E63)', rooms:['General','Devotions','Outreach'] },
-  { id:'men', emoji:'🛡️', name:'Men\'s Fellowship', desc:'Iron sharpening iron — men holding each other accountable, growing in integrity and purpose.', members:67, color:'linear-gradient(135deg,#1565C0,#1E88E5)', rooms:['General','Accountability','Sports'] },
-  { id:'children', emoji:'🎈', name:'Children\'s Ministry', desc:'Nurturing the faith of children aged 2–12 through Bible stories, worship, and creative activities.', members:156, color:'linear-gradient(135deg,#2E7D32,#43A047)', rooms:['General','Curriculum','Events'] },
+  { id:'women', emoji:'🌸', name:"Women's Fellowship", desc:'A community of women growing together in faith, supporting one another through life\'s journey.', members:85, color:'linear-gradient(135deg,#AD1457,#E91E63)', rooms:['General','Devotions','Outreach'] },
+  { id:'men', emoji:'🛡️', name:"Men's Fellowship", desc:'Iron sharpening iron — men holding each other accountable, growing in integrity and purpose.', members:67, color:'linear-gradient(135deg,#1565C0,#1E88E5)', rooms:['General','Accountability','Sports'] },
+  { id:'children', emoji:'🎈', name:"Children's Ministry", desc:'Nurturing the faith of children aged 2–12 through Bible stories, worship, and creative activities.', members:156, color:'linear-gradient(135deg,#2E7D32,#43A047)', rooms:['General','Curriculum','Events'] },
   { id:'prayer', emoji:'🙏', name:'Prayer Warriors', desc:'Dedicated intercessors covering the church, city, and nation in fervent prayer.', members:32, color:'linear-gradient(135deg,#6A1B9A,#8E24AA)', rooms:['General','Requests','Fasting'] },
   { id:'media', emoji:'📹', name:'Media & Tech', desc:'Capturing and broadcasting the Gospel through audio, video, photography, and live streaming.', members:18, color:'linear-gradient(135deg,#00695C,#00897B)', rooms:['General','Projects','Schedule'] },
   { id:'missions', emoji:'🌍', name:'Missions & Evangelism', desc:'Spreading the Gospel locally and globally through evangelism trips, outreaches, and partnerships.', members:44, color:'linear-gradient(135deg,#4527A0,#5E35B1)', rooms:['General','Trips','Reports'] },
@@ -1061,8 +914,8 @@ const GROUPS = [
 const EVENTS = [
   { day:'01', mon:'Jun', title:'Annual Worship Night', desc:'A night of praise, worship and thanksgiving with special guest ministers', time:'6:00 PM', location:'Main Sanctuary' },
   { day:'08', mon:'Jun', title:'Marriage Enrichment Retreat', desc:'A weekend retreat for married couples to reconnect and grow together', time:'Fri–Sun', location:'Kivu Lake Resort' },
-  { day:'15', mon:'Jun', title:'Community Outreach Day', desc:'Volunteering, food distribution, and evangelism in the Kicukiro district', time:'8:00 AM', location:'Kicukiro' },
-  { day:'22', mon:'Jun', title:'Youth Conference 2026', desc:'Three days of worship, workshops, and networking for young believers across the city', time:'4:00 PM', location:'Youth Hall' },
+  { day:'15', mon:'Jun', title:'Community Outreach Day', desc:'Volunteering, food distribution, and evangelism in Kicukiro district', time:'8:00 AM', location:'Kicukiro' },
+  { day:'22', mon:'Jun', title:'Youth Conference 2026', desc:'Three days of worship, workshops, and networking for young believers', time:'4:00 PM', location:'Youth Hall' },
 ];
 
 const GIVE_OPTS = [
@@ -1072,31 +925,13 @@ const GIVE_OPTS = [
   { icon:'fas fa-globe-africa', title:'Missions Fund', desc:'Help send missionaries and fund Gospel outreach across Rwanda and beyond.' },
 ];
 
-// ── CHAT STATE ────────────────────────────────────────────────────────
-let currentGroup = null, currentRoom = 'General', isLeader = false;
-const chatData = {};
-GROUPS.forEach(g => {
-  chatData[g.id] = {};
-  g.rooms.forEach(r => { chatData[g.id][r] = getDefaultMessages(g.name, r); });
-});
-
-function getDefaultMessages(groupName, room) {
-  return [
-    { type:'announce', text:`Welcome to #${room} — ${groupName}! This is your space for fellowship and announcements.` },
-    { type:'in', sender:'Pastor James', text:`God bless everyone 🙏 Remember our meeting this week. Come prepared and filled with the Spirit!`, time:'9:15 AM' },
-    { type:'in', sender:'Mary K.', text:`Amen Pastor! Looking forward to it. I'll be there early to help set up.`, time:'9:22 AM' },
-    { type:'in', sender:'John M.', text:`Thank you for the reminder. God bless the whole team 🙌`, time:'9:45 AM' },
-  ];
-}
-
 // ── RENDER FUNCTIONS ──────────────────────────────────────────────────
 function renderServices() {
   document.getElementById('servicesGrid').innerHTML = SERVICES.map(s => `
     <div class="col-sm-6 col-lg-4 fade-up">
       <div class="service-card">
         <div class="service-icon"><i class="${s.icon}"></i></div>
-        <h5>${s.title}</h5>
-        <p>${s.desc}</p>
+        <h5>${s.title}</h5><p>${s.desc}</p>
         <div class="service-time"><i class="fas fa-clock"></i>${s.time}</div>
       </div>
     </div>`).join('');
@@ -1124,8 +959,7 @@ function renderGroups() {
       <div class="group-card" onclick="openChat('${g.id}',false)">
         <div class="group-header">
           <div class="group-avatar" style="background:${g.color}">${g.emoji}</div>
-          <h5>${g.name}</h5>
-          <p>${g.desc}</p>
+          <h5>${g.name}</h5><p>${g.desc}</p>
         </div>
         <div class="group-footer">
           <span class="member-count"><i class="fas fa-users"></i>${g.members} members</span>
@@ -1140,9 +974,8 @@ function renderEvents() {
     <div class="event-item">
       <div class="event-date"><div class="day">${e.day}</div><div class="mon">${e.mon}</div></div>
       <div class="event-info">
-        <h6>${e.title}</h6>
-        <p>${e.desc}</p>
-        <div class="meta"><i class="fas fa-map-marker-alt me-1"></i>${e.location} · <i class="fas fa-clock ms-2 me-1"></i>${e.time}</div>
+        <h6>${e.title}</h6><p>${e.desc}</p>
+        <div class="event-meta"><i class="fas fa-map-marker-alt me-1"></i>${e.location} · <i class="fas fa-clock ms-2 me-1"></i>${e.time}</div>
       </div>
     </div>`).join('');
 }
@@ -1151,15 +984,29 @@ function renderGive() {
   document.getElementById('giveGrid').innerHTML = GIVE_OPTS.map(g => `
     <div class="col-sm-6 col-lg-3 fade-up">
       <div class="give-card">
-        <i class="${g.icon}"></i>
-        <h5>${g.title}</h5>
-        <p>${g.desc}</p>
-        <button class="btn-give" onclick="showToast('🙌 Thank you for your generosity! You will be redirected to our giving portal.')"><i class="fas fa-heart me-2"></i>Give Now</button>
+        <i class="${g.icon}"></i><h5>${g.title}</h5><p>${g.desc}</p>
+        <button class="btn-give" onclick="showToast('🙌 Thank you for your generosity! Redirecting to giving portal...')"><i class="fas fa-heart me-2"></i>Give Now</button>
       </div>
     </div>`).join('');
 }
 
 // ── GROUP CHAT ────────────────────────────────────────────────────────
+let currentGroup = null, currentRoom = 'General', isLeader = false;
+const chatData = {};
+GROUPS.forEach(g => {
+  chatData[g.id] = {};
+  g.rooms.forEach(r => { chatData[g.id][r] = getDefaultMessages(g.name, r); });
+});
+
+function getDefaultMessages(groupName, room) {
+  return [
+    { type:'announce', text:`Welcome to #${room} — ${groupName}! This is your space for fellowship and announcements.` },
+    { type:'in', sender:'Pastor James', text:'God bless everyone 🙏 Remember our meeting this week. Come prepared and filled with the Spirit!', time:'9:15 AM' },
+    { type:'in', sender:'Mary K.', text:"Amen Pastor! Looking forward to it. I'll be there early to help set up.", time:'9:22 AM' },
+    { type:'in', sender:'John M.', text:'Thank you for the reminder. God bless the whole team 🙌', time:'9:45 AM' },
+  ];
+}
+
 function openGroupChatAsLeader() { openChat(GROUPS[0].id, true); }
 
 function openChat(groupId, leader) {
@@ -1182,7 +1029,6 @@ function renderRooms() {
   if(isLeader) html += `<span class="room-chip-add" onclick="openNewRoomModal()"><i class="fas fa-plus me-1"></i>New Room</span>`;
   document.getElementById('roomsList').innerHTML = html;
 }
-
 function switchRoom(room) { currentRoom = room; renderRooms(); renderChatBody(); }
 
 function renderChatBody() {
@@ -1191,7 +1037,7 @@ function renderChatBody() {
   body.innerHTML = msgs.map(m => {
     if(m.type==='announce') return `<div class="announce-banner"><i class="fas fa-bullhorn"></i>${m.text}</div>`;
     const out = m.type==='out';
-    return `<div class="msg ${out?'msg-out':'msg-in'}">
+    return `<div class="chat-msg ${out?'msg-out':'msg-in'}">
       ${!out?`<div class="msg-sender">${m.sender}</div>`:''}
       <div class="msg-bubble">${m.text}</div>
       <div class="msg-time">${m.time||'now'}</div>
@@ -1247,41 +1093,35 @@ function createNewRoom() {
   setTimeout(()=>{ openChat(currentGroup.id, true); showToast(`✅ Room "${name}" created!`); }, 400);
 }
 
-// ── AI CHATBOT ────────────────────────────────────────────────────────
-let botOpen = false;
-let botInitialized = false;
+// ── AI CHATBOT (Claude-powered) ───────────────────────────────────────
+let botOpen = false, botInitialized = false;
+let botConversation = []; // stores full conversation history
 
-const BOT_KNOWLEDGE = {
-  'service times': 'We have two Sunday services: <b>8:00 AM</b> and <b>10:30 AM</b>. We also have Bible Study on Wednesdays at 6:30 PM, Prayer Meeting on Fridays at 6:00 AM, and Youth Service on Saturdays at 4:00 PM. 🙏',
-  'service': 'We have two Sunday services: <b>8:00 AM</b> and <b>10:30 AM</b>. We also have Bible Study on Wednesdays at 6:30 PM, Prayer Meeting on Fridays at 6:00 AM, and Youth Service on Saturdays at 4:00 PM. 🙏',
-  'sunday': 'Our Sunday worship services are at <b>8:00 AM</b> and <b>10:30 AM</b> at the Main Sanctuary. Both services feature praise, prayer, and powerful preaching. All are welcome! ✝',
-  'join': 'We\'d love to have you join our family! You can visit us any Sunday. To become a member, attend our <b>New Members Class</b> held on the first Saturday of every month. You can also contact us at info@olivesfellowship.rw. 🤝',
-  'member': 'To become a member of Olives Fellowship Temple, attend our <b>New Members Class</b> held on the first Saturday of every month. Contact our office at +250 788 000 123 for more details. 🙏',
-  'event': 'Upcoming events include: 🗓<br>• <b>Annual Worship Night</b> – June 1, 6:00 PM<br>• <b>Marriage Enrichment Retreat</b> – June 8<br>• <b>Community Outreach Day</b> – June 15, 8:00 AM<br>• <b>Youth Conference 2026</b> – June 22, 4:00 PM',
-  'give': 'You can give through: <b>Tithes & Offerings</b>, <b>Building Fund</b>, <b>Welfare Fund</b>, or <b>Missions Fund</b>. Visit our office for bank details or click "Give Online" on our website. God bless your generosity! 💛',
-  'donate': 'To donate, visit us on Sunday, contact our office at +250 788 000 123, or email info@olivesfellowship.rw for bank transfer details. Every gift makes a difference! 💛',
-  'location': 'We are located at <b>123 Olive Branch Avenue, Nyarugenge, Kigali, Rwanda</b>. You can find us on Google Maps by searching "Olives Fellowship Temple Kigali". 📍',
-  'address': 'Our address is <b>123 Olive Branch Avenue, Nyarugenge, Kigali, Rwanda</b>. Office hours are Mon–Fri 9AM–5PM and Saturday 10AM–2PM. 📍',
-  'contact': 'You can reach us at:<br>📞 +250 788 000 123<br>📧 info@olivesfellowship.rw<br>🏢 Office: Mon–Fri, 9AM–5PM',
-  'phone': 'Our phone numbers are: <b>+250 788 000 123</b> and <b>+250 722 000 456</b>. Office hours: Mon–Fri 9AM–5PM. 📞',
-  'email': 'You can email us at:<br>📧 info@olivesfellowship.rw<br>📧 pastor@olivesfellowship.rw<br>📧 events@olivesfellowship.rw',
-  'prayer': 'You can submit a prayer request by clicking the <b>"Prayer Request"</b> button in the menu, or by contacting our pastoral team directly. Our prayer team intercepts daily! 🙏',
-  'youth': 'Our Youth Ministry is for ages 13–35. Youth Service is every <b>Saturday at 4:00 PM</b> in the Youth Hall. We also have the Youth Conference 2026 coming up on June 22! ⚡',
-  'children': 'Our Children\'s Church runs <b>every Sunday during the main service</b> for children ages 3–12. It\'s a fun, safe, and faith-building environment! 🎈',
-  'bible': 'Bible Study meets every <b>Wednesday at 6:30 PM</b> in the Main Sanctuary. It\'s an in-depth exploration of Scripture open to all believers. 📖',
-  'pastor': 'Our lead pastor is <b>Pastor David Nkurunziza</b>. You can contact the pastoral team at pastor@olivesfellowship.rw or visit us during office hours. ✝',
-  'ministries': 'We have 12+ active ministries including: Choir, Youth, Women\'s Fellowship, Men\'s Fellowship, Children\'s Ministry, Prayer Warriors, Media & Tech, Missions & Evangelism, Marriage Ministry, and more! 🌿',
-  'marriage': 'Our Marriage & Family Ministry offers counseling, workshops, and retreats for couples at all stages. Monthly Saturday sessions. Contact pastor@olivesfellowship.rw for more info. 💍',
-  'online': 'Yes! We livestream our Sunday services and you can access recorded sermons online. Watch live every Sunday by visiting our website or social media pages. 🖥️',
-  'live': 'We livestream every Sunday service! Check our social media (Facebook, YouTube) or website for the live link. Both the 8:00 AM and 10:30 AM services are streamed. 📺',
-  'hello': 'Hello! 👋 Welcome to Olives Fellowship Temple AI Assistant. I\'m here to help you with any questions about our church, services, events, and more. What would you like to know?',
-  'hi': 'Hi there! 👋 God bless you! I\'m the Olives Fellowship Temple AI Assistant. How can I help you today?',
-  'welcome': 'Welcome to Olives Fellowship Temple! 🙏 We\'re so glad you\'re here. How can I assist you today?',
-  'thank': 'You\'re welcome! God bless you. 🙏 If you have any more questions about Olives Fellowship Temple, feel free to ask!',
-  'about': 'Olives Fellowship Temple has been serving the Kigali community for over <b>35 years</b>. We have 2,400+ active members, 12 ministries, and serve 500+ families weekly. Our mission: to know God, grow in faith, and make a difference. ✝',
-  'history': 'Olives Fellowship Temple was founded over 35 years ago with a vision to build a community where every person can encounter God and grow in faith. From humble beginnings, we\'ve grown to a thriving congregation of 2,400+ believers! 🌿',
-  'default': 'Thank you for reaching out! 🙏 I\'m here to answer questions about Olives Fellowship Temple — our services, events, ministries, giving, and more. You can also reach us directly at <b>info@olivesfellowship.rw</b> or <b>+250 788 000 123</b>. Is there something specific I can help you with?'
-};
+const SYSTEM_PROMPT = `You are the AI Assistant for Olives Fellowship Temple, a Christian church in Kigali, Rwanda. You serve two roles:
+
+1. CHURCH ASSISTANT: Answer all questions about our church warmly and accurately.
+2. BIBLE GUIDE: Answer any Bible, theology, or Christian faith questions with depth and care. Explain verses, stories, doctrines, and spiritual guidance.
+
+CHURCH INFORMATION:
+- Name: Olives Fellowship Temple
+- Location: 123 Olive Branch Avenue, Nyarugenge, Kigali, Rwanda
+- Phone: +250 788 000 123 | Email: info@olivesfellowship.rw
+- Lead Pastor: Pastor David Nkurunziza
+- Founded: 35+ years ago | Members: 2,400+ | Ministries: 12+
+- SERVICES: Sunday Worship (8:00 AM & 10:30 AM), Bible Study (Wednesdays 6:30 PM), Prayer Meeting (Fridays 6:00 AM), Youth Service (Saturdays 4:00 PM), Cell Groups (Thursdays 7:00 PM), Children's Church (Sundays during service), Women's Ministry (Tuesdays 10 AM), Men's Fellowship (Mondays 7 PM)
+- MINISTRIES: Choir, Youth, Women's Fellowship, Men's Fellowship, Children's Ministry, Prayer Warriors, Media & Tech, Missions & Evangelism, Marriage Ministry
+- UPCOMING EVENTS: Annual Worship Night (Jun 1), Marriage Enrichment Retreat (Jun 8), Community Outreach Day (Jun 15), Youth Conference 2026 (Jun 22)
+- GIVING: Tithes & Offerings, Building Fund, Welfare Fund, Missions Fund
+
+BIBLE & FAITH GUIDANCE:
+- You can explain Bible verses, books, and passages in depth
+- Provide theological explanations clearly and accessibly
+- Share the historical and cultural context of Scripture
+- Guide on prayer, Christian living, spiritual growth
+- Answer questions about salvation, grace, faith, hope, love
+- Reference specific scriptures when relevant (e.g., John 3:16, Psalm 23)
+
+TONE: Warm, faith-affirming, pastoral, and helpful. Keep responses concise (3-5 sentences for simple questions, longer when Scripture or theology requires depth). Always be encouraging and spiritually uplifting.`;
 
 function toggleBot() {
   botOpen = !botOpen;
@@ -1292,7 +1132,7 @@ function toggleBot() {
     icon.className = 'fas fa-times';
     if(!botInitialized) {
       botInitialized = true;
-      setTimeout(()=>addBotMsg("Peace be with you! 🕊️ I'm the <b>Olives Fellowship Temple</b> AI Assistant. I can help you with service times, events, ministries, giving, and more. How can I assist you today?", 'in'), 400);
+      setTimeout(() => addBotMsg('in', "Peace be with you! 🕊️ I'm the <b>Olives Fellowship Temple</b> AI Assistant. I can help you with:<br>• Church services, events &amp; ministries<br>• Bible verses, stories &amp; theology<br>• Spiritual guidance &amp; Christian living<br><br>What would you like to know?"), 400);
     }
     document.getElementById('botInput').focus();
   } else {
@@ -1301,22 +1141,23 @@ function toggleBot() {
   }
 }
 
-function addBotMsg(text, type, showTyping=false) {
+function addBotMsg(type, html) {
   const body = document.getElementById('botBody');
-  if(showTyping) {
-    const typingEl = document.createElement('div');
-    typingEl.className = 'bot-msg bot-msg-in';
-    typingEl.id = 'botTyping';
-    typingEl.innerHTML = `<div class="bot-typing"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>`;
-    body.appendChild(typingEl);
-    body.scrollTop = body.scrollHeight;
-    return;
-  }
-  const el = document.createElement('div');
-  el.className = `bot-msg bot-msg-${type}`;
   const now = new Date();
   const time = now.getHours().toString().padStart(2,'0') + ':' + now.getMinutes().toString().padStart(2,'0');
-  el.innerHTML = `<div class="msg-bubble">${text}</div><div class="msg-time">${time}</div>`;
+  const el = document.createElement('div');
+  el.className = `bot-msg bot-msg-${type}`;
+  el.innerHTML = `<div class="msg-bubble">${html}</div><div class="msg-time">${time}</div>`;
+  body.appendChild(el);
+  body.scrollTop = body.scrollHeight;
+}
+
+function showTyping() {
+  const body = document.getElementById('botBody');
+  const el = document.createElement('div');
+  el.className = 'bot-msg bot-msg-in';
+  el.id = 'botTyping';
+  el.innerHTML = `<div class="bot-typing"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>`;
   body.appendChild(el);
   body.scrollTop = body.scrollHeight;
 }
@@ -1326,50 +1167,56 @@ function removeTyping() {
   if(t) t.remove();
 }
 
-function getBotReply(msg) {
-  const lower = msg.toLowerCase();
-  for(const [key, reply] of Object.entries(BOT_KNOWLEDGE)) {
-    if(key !== 'default' && lower.includes(key)) return reply;
-  }
-  // Try AI API call for better responses
-  return null; // null triggers API call
-}
-
 async function sendBotMsg() {
   const input = document.getElementById('botInput');
   const text = input.value.trim();
   if(!text) return;
-  addBotMsg(text, 'out');
+
+  addBotMsg('out', text);
   input.value = '';
-  // Hide quick buttons after first message
   document.getElementById('botQuickBtns').style.display = 'none';
 
-  const localReply = getBotReply(text);
-  if(localReply) {
-    addBotMsg(null, null, true); // show typing
-    setTimeout(()=>{ removeTyping(); addBotMsg(localReply, 'in'); }, 900 + Math.random()*600);
-  } else {
-    // Use Claude API for unknown queries
-    addBotMsg(null, null, true);
-    try {
-      const response = await fetch('https://api.anthropic.com/v1/messages', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          model: 'claude-sonnet-4-20250514',
-          max_tokens: 1000,
-          system: `You are the friendly AI assistant for Olives Fellowship Temple, a Christian church in Kigali, Rwanda. You help visitors and members with questions about the church. Be warm, helpful, and faith-affirming. Keep responses concise (2-4 sentences). Church details: Located at 123 Olive Branch Avenue, Nyarugenge, Kigali. Phone: +250 788 000 123. Email: info@olivesfellowship.rw. Sunday services: 8:00 AM & 10:30 AM. Bible Study: Wednesdays 6:30 PM. Prayer Meeting: Fridays 6:00 AM. Youth Service: Saturdays 4:00 PM. Pastor: David Nkurunziza. 2400+ members, 35+ years of ministry, 12 ministries. Ministries include: Choir, Youth, Women's Fellowship, Men's Fellowship, Children's Ministry, Prayer Warriors, Media & Tech, Missions & Evangelism. Upcoming events: Annual Worship Night Jun 1, Marriage Enrichment Retreat Jun 8, Community Outreach Day Jun 15, Youth Conference 2026 Jun 22.`,
-          messages: [{ role: 'user', content: text }]
-        })
-      });
-      const data = await response.json();
-      removeTyping();
-      const reply = data.content && data.content[0] ? data.content[0].text : BOT_KNOWLEDGE['default'];
-      addBotMsg(reply, 'in');
-    } catch(e) {
-      removeTyping();
-      addBotMsg(BOT_KNOWLEDGE['default'], 'in');
+  // Add to conversation history
+  botConversation.push({ role: 'user', content: text });
+
+  showTyping();
+
+  // ── REPLACE 'YOUR_NEW_DEEPSEEK_API_KEY_HERE' with your new DeepSeek key ──
+  const DEEPSEEK_API_KEY = 'sk-7b6d698700bc4e7fb49baacfeb2109aa';
+  try {
+    const response = await fetch('https://api.deepseek.com/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${DEEPSEEK_API_KEY}`
+      },
+      body: JSON.stringify({
+        model: 'deepseek-chat',
+        max_tokens: 1000,
+        messages: [
+          { role: 'system', content: SYSTEM_PROMPT },
+          ...botConversation
+        ]
+      })
+    });
+
+    const data = await response.json();
+    removeTyping();
+
+    if(data.choices && data.choices[0] && data.choices[0].message) {
+      const reply = data.choices[0].message.content;
+      // Store assistant reply in conversation history
+      botConversation.push({ role: 'assistant', content: reply });
+      // Convert newlines to <br> for HTML display
+      const htmlReply = reply.replace(/\n\n/g, '<br><br>').replace(/\n/g, '<br>');
+      addBotMsg('in', htmlReply);
+    } else {
+      addBotMsg('in', "I'm sorry, I couldn't process that request. Please try again or contact us at <b>info@olivesfellowship.rw</b>. 🙏");
     }
+  } catch(err) {
+    removeTyping();
+    addBotMsg('in', "I'm having trouble connecting right now. Please reach us at <b>info@olivesfellowship.rw</b> or <b>+250 788 xxx xxx</b>. God bless you! 🙏");
+    console.error('Bot error:', err);
   }
 }
 
@@ -1381,55 +1228,70 @@ function sendQuick(msg) {
 // ── TOAST ─────────────────────────────────────────────────────────────
 function showToast(msg) {
   document.getElementById('toastMsg').textContent = msg;
-  new bootstrap.Toast(document.getElementById('mainToast'), {delay:3500}).show();
+  new bootstrap.Toast(document.getElementById('mainToast'), { delay: 3500 }).show();
 }
 
 // ── SCROLL & NAV ──────────────────────────────────────────────────────
 window.addEventListener('scroll', () => {
-  const nav = document.getElementById('navbar');
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
   const btn = document.getElementById('scrollTop');
-  nav.classList.toggle('scrolled', window.scrollY > 50);
   btn.style.display = window.scrollY > 300 ? 'flex' : 'none';
-});
+}, { passive: true });
 
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-link');
-window.addEventListener('scroll', () => {
-  let current = '';
-  sections.forEach(s => { if(window.scrollY >= s.offsetTop - 100) current = s.id; });
-  navLinks.forEach(l => {
-    l.classList.remove('active');
-    if(l.getAttribute('href') === '#' + current) l.classList.add('active');
+const navObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting) {
+      const id = e.target.id;
+      navLinks.forEach(l => {
+        l.classList.remove('active');
+        if(l.getAttribute('href') === '#' + id) l.classList.add('active');
+      });
+    }
   });
-});
+}, { rootMargin: '-30% 0px -60% 0px' });
+sections.forEach(s => navObserver.observe(s));
 
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
     const target = document.querySelector(a.getAttribute('href'));
     if(target) {
       e.preventDefault();
-      target.scrollIntoView({ behavior:'smooth', block:'start' });
+      const offset = 70;
+      const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
     }
     const nav = document.getElementById('navMenu');
     if(nav.classList.contains('show')) bootstrap.Collapse.getInstance(nav)?.hide();
   });
 });
 
-// ── FADE UP OBSERVER ─────────────────────────────────────────────────
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+// ── FADE UP OBSERVER ──────────────────────────────────────────────────
+const fadeObserver = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if(e.isIntersecting) {
+      const delay = (e.target.closest('.row') ? Array.from(e.target.parentElement.children).indexOf(e.target) * 80 : 0);
+      e.target.style.transitionDelay = delay + 'ms';
+      e.target.classList.add('visible');
+      fadeObserver.unobserve(e.target);
+    }
+  });
 }, { threshold: 0.1 });
-function observeFadeUps() { document.querySelectorAll('.fade-up').forEach(el => observer.observe(el)); }
 
-// ── COUNTER ANIMATION ─────────────────────────────────────────────────
+function observeFadeUps() {
+  document.querySelectorAll('.fade-up').forEach(el => fadeObserver.observe(el));
+}
+
+// ── COUNTER ANIMATION ──────────────────────────────────────────────────
 function animateCounter(el, target) {
   let start = 0;
-  const step = Math.ceil(target / 60);
+  const step = Math.ceil(target / 55);
   const timer = setInterval(() => {
-    start += step;
-    if(start >= target) { el.textContent = target.toLocaleString() + '+'; clearInterval(timer); }
-    else { el.textContent = start.toLocaleString(); }
-  }, 20);
+    start = Math.min(start + step, target);
+    el.textContent = start.toLocaleString() + (start >= target ? '+' : '');
+    if(start >= target) clearInterval(timer);
+  }, 22);
 }
 const counterObserver = new IntersectionObserver(entries => {
   entries.forEach(e => {
